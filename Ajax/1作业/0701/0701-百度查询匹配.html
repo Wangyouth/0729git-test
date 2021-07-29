@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>百度输入框字符串查询</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#box {
+				padding-top: 30px;
+				height: 40px;
+			}
+
+			#logo {
+				float: left;
+			}
+
+			#search {
+				float: left;
+				width: 700px;
+				height: 35px;
+				border: 1px solid #000000;
+			}
+
+			#input {
+				width: 670px;
+				height: 100%;
+				border: none;
+				outline: none;
+				font-size: 20px;
+			}
+
+			#phone {
+				float: right;
+				margin-top: 9px;
+				margin-right: 5px;
+			}
+
+			#searchbtn {
+				float: left;
+				border: none;
+				width: 100px;
+				height: 37px;
+				line-height: 35px;
+				font-size: 16px;
+				color: white;
+				background-color: #0000FF;
+				padding: 0 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="0701img/logo.jpg" id="logo">
+			<div id="search">
+				<input type="text" name="" value="" id="input" />
+				<img src="0701img/phone.jpg" id="phone">
+			</div>
+			<button id="searchbtn">百度一下</button>
+		</div>
+		<div id="nav"></div>
+
+		<script type="text/javascript">
+			var btn = document.querySelector('#searchbtn');
+			var inputs = document.querySelector('#input');
+
+			btn.onclick = function() {
+				//创建ajax
+				if (window.XMLHttpRequest) {
+					var oajax = new XMLHttpRequest();
+				} else {
+					var oajax = new ActiveXObject('Microsoft.XMLHTT');
+				}
+				//2创建链接
+				oajax.open('get', 'data/wrok1.json');
+				//3send()
+				oajax.send();
+				//4..返回数据
+				oajax.onreadystatechange = function() {
+					if (oajax.readyState == 4 && oajax.status == 200) {
+						console.log(JSON.parse(oajax.responseText));
+						var list = JSON.parse(oajax.responseText);
+						for (var i = 0; i < list.length; i++) {
+							if (list[i].name == inputs.value) {
+								console.log(list[i]);
+								document.querySelector('#nav').innerHTML = JSON.stringify(list[i]);
+							}
+						}
+					} else {
+						document.querySelector('#nav').innerHTML = '没有获取到跟--' + inputs.value + '--相关的信息';
+						console.log('出错！');
+					}
+				};
+			};
+		</script>
+	</body>
+</html>

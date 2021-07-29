@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax天气模拟获取</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+
+        #sports-header {
+            width: 100%;
+            height: 50px;
+            background: #537bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sports-main {
+            margin-top: 50px;
+            height: calc(100vh - 50px);
+        }
+    </style>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/better-scroll.js"></script>
+</head>
+
+<body>
+    <header id="sports-header">
+        天气信息
+    </header>
+    <!-- 下拉刷新的区域 -->
+    <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!-- <li>
+                    <div class="sports-list-text">
+                        <p>
+                            詹姆斯一分半钟拿下6分1盖帽，这就是联盟第一人的水准
+                        </p>
+                        <p>
+                            <span>50评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="images/a.jpg" alt="">
+                    </div>
+                </li> -->
+            </ul>
+            <!-- 上拉的区域 -->
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+
+    <!-- 模板引擎 -->
+    <script type="text/html" id="tpl-sportsList">
+
+        <li>
+            <div class="sports-list-text">
+                <p>
+                    {{provinceName}}
+                </p>
+                <p>
+                    {{city}}
+                </p>
+                {{each weathers}}
+                <p>
+                    {{$value.date}}
+                </p>
+                <p>
+                    {{$value.week}}
+                </p>
+                <p>
+                    {{$value.weather}}
+                </p>
+                {{/each}}
+            </div>
+        </li>
+       
+    </script>
+
+    <!-- 使用axios请求数据，实现上拉，下拉刷新 -->
+    <script>
+        var sportsList = document.querySelector('.sports-list')
+        axios.post('/list708', {
+            page: 0,
+            count: 10
+        }).then(function (res) {
+            console.log(res.data)
+            console.log(res.data.list)
+            console.log(res.data.list.city)
+            console.log(res.data.list.provinceName)
+
+            sportsList.innerHTML = template('tpl-sportsList', res.data.list);
+        })
+    </script>
+</body>
+
+</html>

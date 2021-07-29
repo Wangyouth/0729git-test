@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>限制输入字数</title>
+		
+		<script type="text/javascript">
+			window.addEventListener('load',function(){
+				var texts=document.querySelector('textarea')
+				var spans=document.querySelector('span')
+				texts.addEventListener('focus' ,function(){
+					var timer=setInterval(function(){
+						var len=texts.maxLength-texts.value.length
+						spans.innerHTML='你还可以输入'+len+'个字'
+					},10 )
+				} )
+				
+			} )
+		</script>
+	</head>
+	<body>
+		<textarea rows="10" cols="50" maxlength="100"></textarea><span></span>
+	</body>
+</html>

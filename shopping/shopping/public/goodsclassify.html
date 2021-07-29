@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>商品分类</title>
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/home/goodsclassify.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/home/better-scroll.js"></script>
+    <script src="javascripts/home/goodsclassify.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+</head>
+
+<body>
+    <div class="page">
+        <div class="search-header">
+            <div class="back"></div>
+            <div class="search">请输入宝贝名称</div>
+        </div>
+        <div class="goods-main">
+            <div class="classify-wrap">
+                <!-- <div>
+                    <div class="classify-item">平牌男装</div>
+                    <div class="classify-item">平牌男装</div>
+                </div> -->
+                <script type="text/html" id="classifyitem">
+                    <div>
+                    {{each data}}
+                    <div class="classify-item" cid="{{$value.cid}}">{{$value.title}}</div>
+                    {{/each}}
+                    </div>
+                </script>
+            </div>
+            <div class="goods-content">
+                <div class="goods-content-main">
+                    <div>
+                        <!-- <div class="goods-wrap">
+                            <div class="classify-nme"></div>
+                            <div class="goods-itmes-wrap">
+                                <ul>
+                                    <li>
+                                        <img src="" alt="">
+                                    </li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div> -->
+                        <script type="text/html" id="goodswrap">
+                            {{each data}}
+                            <div class="goods-wrap" cid="{{$value.cid}}">
+                                <div class="classify-name">{{$value.title}}</div>
+                                <div class="goods-items-wrap">
+                                    {{each $value.goods}}
+                                    <ul>
+                                        <li>
+                                            <img src="{{$value.image}}" gid="{{$value.gid}}">
+                                        </li>
+                                        <li>{{$value.title}}</li>
+                                    </ul>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            {{/each}}
+                        </script>
+                    </div>
+                    <div class="no-data">没有相关商品!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索页面---开始 -->
+        <div class="search-component">
+            <div class="search-header">
+                <div class="close"></div>
+                <div class="search-wrap">
+                    <div class="search-input-wrap"><input type="text" placeholder="请输入宝贝名称" class="search"></div>
+                    <button type="button" class="search-btn"></button>
+                </div>
+            </div>
+            <div class="search-main">
+                <div class="search-title-wrap">
+                    <div class="search-title">热门搜索</div>
+                </div>
+                <div class="search-keywords-wrap">
+                    <!-- <div class="keywords">连衣裙</div> -->
+                    <script type="text/html" id="searchkeywords">
+                        {{each data}}
+                        <div class="keywords">{{$value.title}}</div>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索页面---结束 -->
+
+
+    </div>
+</body>
+
+</html>

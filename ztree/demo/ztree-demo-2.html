@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+		<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+	</head>
+	<body>
+		<ul id="tree" class="ztree" style="width:230px; overflow:auto;"></ul>
+		<script type="text/javascript">
+			var setting = {
+				check: {
+					enable: true,
+					chkStyle: 'checkbox' //显示 checkbox 选择框，默认checkbox可选择值radio
+				},
+				data: {
+				    simpleData: {
+				        enable: true,
+				        idKey: 'id',//节点id名
+				        pIdKey: 'pid',//父节点id名
+				        rootPId: 0//默认根节点为0
+				    }
+				}
+			
+			};
+			var zTreeNodes = [{
+					'name': '北京',
+					'open': true,
+					'id': 1,
+					'pid': 0
+				},
+				{
+					'name': '东城区',
+					'id': 11,
+					'pid': 1
+				},
+				{
+					'name': '朝阳区',
+					'id': 12,
+					'pid': 1
+				},
+				{
+					'name': '重庆',
+					'open': true,
+					'id': 2,
+					'pid': 0
+				},
+				{
+					'name': '巴南区',
+					'open': true,
+					'id': 21,
+					'pid': 2
+				},
+				{
+					'name': '南泉',
+					'id': 211,
+					'pid': 21
+				},
+				{
+					'name': '界石',
+					'id': 212,
+					'pid': 21
+				},
+				{
+					'name': '渝中区',
+					'id': 22,
+					'pid': 2
+				}
+			];
+			var city = $.fn.zTree.init($('#tree'), setting, zTreeNodes);
+		</script>
+	</body>
+</html>

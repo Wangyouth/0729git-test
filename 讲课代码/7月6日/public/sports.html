@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        ul,ol {list-style: none;}
+        img {display: block; }
+        #sports-header {width: 100%;height: 50px;background: #537bff;display: flex;justify-content: space-between;
+            align-items: center;color: white;font-size: 20px;
+            padding: 0 10px;position:fixed;top: 0;z-index: 100;}
+        #sports-main { margin-top: 50px; height: calc(100vh - 50px); }
+        #sports-main ul { background: white;}
+         #sports-main ul li {display: flex;border-bottom: 1px #f7f7f7 solid;margin: 0 18px;padding: 20px 0;}
+        #sports-main .sports-list- text {flex: 1;font-size: 18px;line-height: 26px;}
+        #sports-main .sports-list-text p:last-of-type { font-size: 14px; color: #828c9b;display: flex;margin-top: 10px; }
+        #sports-main .sports-list-text p:last-of-type span { margin-right: 10px; }
+        #sports-main .sports-list- img {width: 130px;margin-left: 20px;}
+        #sports-main .sports-list-img img {width: 100%; border-radius: 10px; }
+        #loadingDown {width: 100%;position:absolute;top: 60px; z-index: -1;text-align: center;}
+        #loadingUp { width: 100%;text-align:center; padding: 20px 0; }
+        #loading {position: absolute; left: 0;  top: 0;  right: 0; bottom: 0;margin: auto; width: 200px;height: 30px; line-height: 30px;text-align: center;z-index: 100; }
+    </style>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+</head>
+
+<body>
+    <header id="sports-header">
+        腾讯 | 体育
+    </header>
+    <!-- 下拉刷新的区域 -->
+     <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!--<li>
+                    <div class="sports-list-text">
+                        <p>
+                            詹姆斯一分半钟拿下6分1盖帽，这就是联盟第一人的水准
+                        </p>
+                        <p>
+                            <span>50评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/a.jpg" alt="">
+                    </div>
+                </li>
+                 <li>
+                    <div class="sports-list-text">
+                        <p>
+                            魔兽18年为何会被⻩蜂纵走，管理层有心其影响年轻球员
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/b.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="sports-list-text">
+                        <p>
+                            乔治未来惹争议，两大名宿建议快船别急，詹姆斯热火没夺冠！
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/c.jpg" alt="">
+                    </div>
+                </li> -->
+            </ul> 
+            <!-- 上拉的区域 -->
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+
+    <!-- <table border="1">
+        <thead>
+            <tr>
+                <th>姓名：</th>
+                <th>年龄：</th>
+                <th>性别：</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table> -->
+
+    <script>
+        // var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){
+        //     console.log("请求已经完成")
+        // }
+        // xhr.open('GET','/list',true)
+        // xhr.send()
+
+        // var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){
+        //     console.log("请求已经完成")
+        // }
+        // xhr.open('POST','/list2',true)
+        // xhr.send()
+
+
+        // var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){
+        //     console.log("请求已经完成")
+        // }
+        // xhr.open('GET','/list?type=phone&count=20',true)
+        // xhr.send()
+
+        //   var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){
+        //     console.log("请求已经完成");
+        //     if(xhr.status==200){
+        //         console.log(xhr.responseText)
+        //     }
+        // }
+        // xhr.open('POST','/list2',true);
+        // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        // xhr.send('type=mac&count=30');
+
+        // var json={
+        //     "username":"aoao",
+        //     "foo":null
+        // };
+        // console.log(json.username)
+
+        // var json='{"username":"aoao"}';
+        // json=JSON.parse(json)
+        // console.log(json.username)
+
+        // console.log(JSON.stringify({"username":"aoao"}));
+
+
+        //   var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){
+        //     console.log("请求已经完成")
+        //     if(xhr.status==200){
+        //         // console.log(xhr.responseText)
+        //         var data=JSON.parse(xhr.responseText);
+        //         console.log(data.list[0].username)
+        //     }
+        // }
+        // xhr.open('GET','/list?type=phone&count=20',true)
+        // xhr.send()
+
+
+    </script>
+
+    <!-- <script id="tpl-tbody" type="text/html">
+        {{each list}}
+        <tr>
+            <td>{{$value.username}}</td>
+            <td>{{$value.age}}</td>
+            <td>{{$value.gender}}</td>
+        </tr>
+        {{/each}}
+    </script> -->
+
+    <script>
+        //   <!-- 响应json数据到页面之上 -->
+        //    var xhr=new XMLHttpRequest();
+        //    var tbody=document.querySelector('tbody');
+        // xhr.onload=function(){
+        //     console.log("请求已经完成")
+        //     if(xhr.status==200){
+        //         // console.log(xhr.responseText)
+        //         var data=JSON.parse(xhr.responseText);
+                // 1.普通方法dom操作
+                // for(var i=0;i<data.list.length;i++){
+                //     var tr=document.createElement('tr');
+                //     for(var attr in data.list[i]){
+                //         var td=document.createElement('td');
+                //         td.innerHTML=data.list[i][attr];
+                //         tr.append(td);
+                //     }
+                //     tbody.append(tr)
+                // }
+
+
+                // 2这里是拼接模板字符串的方法
+                // tbody.innerHTML=data.list.map((v,i)=>{
+                //     return `
+                //         <tr>
+                //             <td>${v.username}</td>
+                //             <td>${v.age}</td>
+                //             <td>${v.gender}</td>
+                //         </tr>
+                //     `
+                // }).join('');
+
+                // 第三种方法：前端模板引擎
+        //         tbody.innerHTML=template('tpl-tbody',data)
+        //     }
+        // }
+        // xhr.open('GET','/list',true)
+        // xhr.send()
+
+
+        // var username="zozo";
+        // var info=`my name is ${username}`
+
+
+// 发送json数据
+        // var xhr=new XMLHttpRequest();
+        // xhr.onload=function(){}
+        // xhr.open('POST','/list2',true);
+        // xhr.setRequestHeader('Content-Type','application/json');
+        // xhr.send(JSON.stringify({'username':'balalballbla'}));
+
+
+    </script>
+
+    <!-- <script id="tpl-sportsList" type="text/html">
+        {{each list}}
+        <li>
+            <div class="sports-list-text">
+                <p>
+                   {{$value.title}}
+                </p>
+                <p>
+                    <span>{{$value.comment}}</span>
+                </p>
+            </div>
+            <div class="sports-list-img">
+                <img src="{{$value.img}}" alt="">
+            </div>
+        </li>
+        {{/each}}
+    </script> -->
+    <!-- <script>
+        // 初始化渲染列表
+        var sportsList=document.querySelector('.sports-list');
+        var xhr=new XMLHttpRequest();
+        xhr.onload=function(){
+            if(xhr.status==200){
+                // console.log(xhr.responseText)
+                var data=JSON.parse(xhr.responseText);
+                if(data.errcode==0){
+                    // 用模版引擎，去得到渲染后的字符串
+                    sportsList.innerHTML=template('tpl-sportsList',data)
+                }
+            }
+        }
+        // 按照接口文档的，请求方式post，
+        xhr.open('POST','/list',true);
+        xhr.setRequestHeader('Content-Type','application/json');
+        // 按照接口文档，去校验器请求类型
+        xhr.send(JSON.stringify({'page':0,'count':10}));
+    </script> -->
+
+    <script>
+        // var fn1=function(a,b){
+        //     return a+b
+        // }
+        // fn1(10,4)
+        // // ES6的箭头函数，将原本函数的function关键字删除掉，函数名也删除，使用=>连接参数列表和函数体
+        // var fn1=(a,b)=>{
+        //     return a+b
+        // }
+        // fn1(10,4)
+
+        // 单个参数
+        // var fn2=function(a){}
+        // var fn2=a=>{}
+        // 多个参数
+        // var fn3=function(gn,ff){}
+        // var fn3=(gn,ff)=>{}
+
+        
+
+
+    // axios的基本操作
+    // axios.get('/list?username=apap&age=20').then((res)=>{
+    //     console.log(res)
+    // })
+
+    // axios.get('/list',{
+    //     params:{
+    //         username:"aiai",
+    //         age:30
+    //     }
+    // }).then((res)=>{
+    //     console.log(res)
+    // })
+
+    // axios.post('/list2',{
+    //         username:"aiai",
+    //         age:30
+    // }).then((res)=>{
+    //     console.log(res)
+    // })
+
+    axios.post('/list2','username=aoao&age=30').then((res)=>{
+        console.log(res)
+    })
+    </script>
+</body>
+</html>

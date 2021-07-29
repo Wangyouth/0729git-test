@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图片放大</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.small {
+				position: relative;
+				width: 300px;
+				height: 225px;
+				border: 1px solid black;
+				margin: 10px;
+				background: url(imges/smallpic.jpg) no-repeat;
+			}
+
+			.move {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 150px;
+				background-color: rgba(0, 0, 0, 0.5);
+				cursor: move;
+			}
+
+			.big {
+				position: absolute;
+				top: 0;
+				left: 310px;
+				width: 600px;
+				height: 450px;
+				border: 1px solid black;
+				overflow: hidden;
+			}
+
+			.bigimg {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="small">
+			<div class="move"></div>
+			<div class="big"><img src="imges/bigpic.jpg" class="bigimg"></div>
+		</div>
+		<script type="text/javascript">
+			window.addEventListener('load', function() {
+				var small = document.querySelector('.small');
+				var move = document.querySelector('.move');
+				var big = document.querySelector('.big');
+				var bigimg = document.querySelector('.bigimg');
+
+				small.addEventListener('mousemove', function(e) {
+					var x = e.pageX - small.offsetLeft; //鼠标在small盒子的位置
+					var y = e.pageY - small.offsetTop;
+
+					//小的阴影盒子的位置
+					var moveX = x - move.offsetWidth / 2;
+					var moveY = y - move.offsetHeight / 2;
+					if (moveX <= 0) {
+						moveX = 0;
+					} else if (moveX >= small.offsetWidth - move.offsetWidth) {
+						moveX = small.offsetWidth - move.offsetWidth;
+					}
+					move.style.left = moveX + 'px';
+					if (moveY <= 0) {
+						moveY = 0;
+					} else if (moveY >= small.offsetHeight - move.offsetHeight) {
+						moveY = small.offsetHeight - move.offsetHeight;
+					}
+					move.style.top = moveY + 'px';
+
+					//图片移动
+					//小框移动的距离/小框最大的移动距离=大图移动的距离/大图的最大移动距离
+					//所以
+					//大图移动的距离=小框移动的距离moveX*大图的最大移动距离bigimg.offsetWidth-big.offsetWidth/小框最大的移动距离small.offsetWidth-move.offsetWidth
+					var bigimgX = moveX * (bigimg.offsetWidth - big.offsetWidth) / (small.offsetWidth - move
+						.offsetWidth);
+					var bigimgY = moveY * (bigimg.offsetHeight - big.offsetHeight) / (small.offsetHeight - move
+						.offsetHeight);
+					bigimg.style.left = -bigimgX + 'px';
+					bigimg.style.top = -bigimgY + 'px';
+
+
+				}); //鼠标在small盒子上移动事件
+
+
+			}); //加载事件
+		</script>
+	</body>
+</html>

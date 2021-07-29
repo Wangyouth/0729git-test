@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>原型链-2</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function extend(child, parent) {
+				var F = function() {
+					F.prototype = parent.prototype;
+					child.prototype = F.prototype;
+				};
+			}
+
+			function Animal(name, age, color) {
+				this.name = name;
+				this.age = age;
+				this.color = color;
+			}
+			extend(Poultry, Animal);
+
+			function Poultry(leg) {
+				this.leg = leg;
+				this.info = function() {
+					document.write('我是一只' +this.color+ '的'+this.name+'，我已经'+this.age+'岁了，我有'+this.leg+'条腿'+'<br />');
+				};
+			}
+			
+			var a1=new Poultry(4);
+			a1.name='小狗狗';
+			a1.age=1;
+			a1.color='灰色';
+			a1.info();
+			
+			var a2=new Poultry(4);
+			a2.name='茶杯猫';
+			a2.age=2;
+			a2.color='白色';
+			a2.info();
+			
+			var a3=new Poultry(2);
+			a3.name='母鸡';
+			a3.age=1;
+			a3.color='红色';
+			a3.info();
+		</script>
+	</body>
+</html>

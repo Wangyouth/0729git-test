@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>论坛发帖</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				position: relative;
+				margin: 2px 0 0 20px;
+			}
+
+			.pub {
+				width: 200px;
+				height: 50px;
+				background-color: #009865;
+				border-radius: 10px;
+				line-height: 50px;
+				font-size: 20px;
+				color: #FFFFFF;
+				text-align: center;
+
+			}
+
+			.publish {
+				display: none;
+				position: absolute;
+				top: 60px;
+				left: 75px;
+				width: 400px;
+				height: 235px;
+				border: 1px solid #999999;
+				background-color: #FFFFFF;
+			}
+
+			.intext {
+				position: absolute;
+				top: 8px;
+				left: 8px;
+				width: 350px;
+				height: 25px;
+				outline: none;
+
+			}
+
+			.moudle_nav {
+				position: absolute;
+				top: 50px;
+				left: 8px;
+				font-size: 15px;
+			}
+			.moudle{
+				width: 200px;
+				height: 25px;
+				outline: none;
+			}
+			.texts {
+				position: absolute;
+				top: 83px;
+				left: 8px;
+				width: 350px;
+				height: 100px;
+				outline: none;
+			}
+
+			.dopublish {
+				position: absolute;
+				top: 195px;
+				left: 8px;
+				width: 150px;
+				height: 30px;
+				border-radius: 10px;
+				text-align: center;
+				line-height: 30px;
+				color: #FFFFFF;
+				background-color: #009865;
+			}
+
+			.nav {
+				width: 500px;
+				margin-top: 5px;
+				border-top: 1px solid #999999;
+			}
+			.navson{
+				width: 500px;
+				height: 80px;
+				padding: 10px 0;
+				/* background-color: #87CEEB; */
+				border-bottom: 1px dotted #999999;
+			}
+			.navsonone{position: absolute;
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				overflow: hidden;
+				/* background-image: url(img/发帖images/images/tou01.jpg); */
+			}
+			.navsontwo{
+				display: inline-block;
+				margin-top: 10px;
+				margin-left: 100px;
+				width: 300px;
+				height: 26px;
+				font-weight: 700;
+				font-size: 20px;
+			}
+			.navsonthree{
+				padding-top: 10px;
+				margin-left: 100px; 
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="pub">
+				我要发帖
+			</div>
+			<div class="publish">
+				<input type="text" placeholder="请输入标题（1-50个字符）" class="intext" />
+				<div class="moudle_nav">
+					所属板块：<select class="moudle">
+						<option value="">请选择板块</option>
+						<option value="电子书籍">电子书籍</option>
+						<option value="新课来了">新课来了</option>
+						<option value="新手报到">新手报到</option>
+						<option value="职业规划">职业规划</option>
+					</select>
+				</div>
+				<textarea class="texts"></textarea>
+				<div class="dopublish">
+					发布
+				</div>
+			</div>
+			<div class="nav">
+				<!-- <div class="navson">
+					<div class="navsonone"></div>
+					<span class="navsontwo">你好 </span>
+					<p class="navsonthree">板块，电子书籍</p>
+				</div> -->
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			window.addEventListener('load',function(){
+				//获取元素
+				var pub=document.querySelector('.pub');//我要发布按钮
+				var publish=document.querySelector('.publish');//填写模块
+				var intext=document.querySelector('.intext');//标题
+				var moudle=document.querySelector('.moudle');//所属模块
+				var texts=document.querySelector('.texts');//文本域信息
+				var dopublish=document.querySelector('.dopublish');//发布按钮
+				var nav=document.querySelector('.nav');//列表栏
+				
+				//点击我要发布，显示填写信息模块
+				pub.addEventListener('click',function(){
+					publish.style.display='block';
+					nav.style.display='none';
+				});
+				
+				dopublish.addEventListener('click',function(){
+					publish.style.display='none';
+					nav.style.display='block';
+					var intexttext=intext.value;
+					var moudletext=moudle.value;
+				
+					// var textstext=texts.value;
+					
+					//创建列表
+					var div1=document.createElement('div');
+					div1.className='navson';
+					nav.insertBefore(div1,nav.children[0]);
+					
+					//创建头像
+					var imgarr=['img/发帖images/images/tou01.jpg','img/发帖images/images/tou02.jpg','img/发帖images/images/tou03.jpg','img/发帖images/images/tou04.jpg'];
+					function selectFrom(startNumber, endNumber) {
+					    var choice = endNumber - startNumber + 1;
+					    return Math.floor(Math.random() * choice + startNumber);
+					}
+					var index = selectFrom(0,3);//产生0至3的随机数
+
+					var div2=document.createElement('div');
+					div2.className='navsonone';
+					div2.style.backgroundImage='url('+imgarr[index]+')';
+					div1.appendChild(div2);
+					
+					//创建标题
+					var span1=document.createElement('span');
+					span1.className='navsontwo';
+					span1.innerHTML=intext.value;
+					div1.appendChild(span1);
+					
+					//创建板块，和日期
+					var dt = new Date();
+					var y=dt.getFullYear();
+					var m=dt.getMonth();
+					var d=dt.getDate();
+					var h=dt.getHours();
+					var min=dt.getMinutes();
+					var span2=document.createElement('p');
+					span2.className='navsonthree';
+					span2.innerHTML='板块：'+moudle.value+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发表时间：'+y+'-'+m+'-'+d+'&nbsp;&nbsp;'+h+':'+min;
+					div1.appendChild(span2);
+					
+					intext.value='';
+					moudle.value='';
+					texts.value='';
+				} );
+				
+			} );
+		</script>
+	</body>
+</html>

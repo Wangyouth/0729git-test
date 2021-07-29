@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="email" name="" id="" value="" />
+		<script type="text/javascript">
+			var email=document.querySelector('input');
+			var reg= /^\w+@[a-z0-9]+\.[a-z]{2,3}$/;
+			email.addEventListener('blur',function(){
+				if(!reg.test(this.value)){
+					console.log('邮箱格式错误');
+				}
+				else{
+					console.log('邮箱格式正确');
+				}
+			} );
+		</script>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="X-UA-Compatible" content="IE=edge" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/3.3.1jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>0721</title>
+		<style type="text/css">
+		.list{ 
+				height: 40px;
+				background-color: cadetblue;
+				border:1px solid pink ;
+			}
+			.text{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			
+			
+			
+			
+			<br>
+			<!-- 导航栏 -->
+			<ul class="nav nav-tabs nav-justified">
+				<li  class="active"><a href="#" class="active">首页</a></li>
+				<li><a href="#">分类</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle='dropdown'>
+						我的
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">111</a></li>
+						<li><a href="#">222</a></li>
+						<li><a href="#">333</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			
+			<br>
+			<!-- 输入框前后添加元素 -->
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon">##</span>
+				<input type="text" class="form-control" placeholder="请输入相关内容" />
+			</div>
+			<div class="input-group input-group-lg">
+				<input type="text" class="form-control" placeholder="请输入相关内容" />
+				<span class="input-group-addon">.com</span>
+			</div>
+			
+			
+			<br>
+			<!--下拉菜单  -->
+			<div class="dropdown"><!-- open 默认打开 -->
+				<button class="btn" data-toggle='dropdown'>
+					下拉菜单
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="javascript:;">111</a></li>
+					<li><a href="javascript:;">222</a></li>
+					<li><a href="javascript:;">333</a></li>
+					<li><a href="javascript:;">444</a></li>
+				</ul>
+			</div>
+			
+			
+			
+			<br>
+			<!-- //字体图标 -->
+			<div class="row text-center list">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-home"></span>
+					<span class="text">首页</span>
+				</div>
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-th-list"></span>
+					<span class="text">分类</span>
+				</div>
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-cutlery"></span>
+					<span class="text">购物车</span>
+				</div>
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-user"></span>
+					<span class="text">我的</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

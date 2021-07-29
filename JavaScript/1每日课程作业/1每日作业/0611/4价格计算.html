@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>价格计算</title>
+		<style type="text/css">
+			ul li {
+				border-bottom: 2px solid black;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				&yen;<input type="text" value="21.90" class="num1" />
+				<input type="text" value="0" class="num2" />
+				<button type="button" class="btn1">-</button>
+				<button type="button" class="btn2">+</button>
+				<span class="price1">0</span>
+			</li>
+			<li>
+				&yen;<input type="text" value="11.30" class="num3" />
+				<input type="text" value="0" class="num4" />
+				<button type="button" class="btn3">-</button>
+				<button type="button" class="btn4">+</button>
+				<span class="price2">0</span>
+			</li>
+		</ul>
+		<span>总价:</span><span class="price3">0</span>
+		<script type="text/javascript">
+			// 第一行
+			var n1 = document.querySelector('.num1');
+			var n2 = document.querySelector('.num2');
+			var b1 = document.querySelector('.btn1');
+			var b2 = document.querySelector('.btn2');
+			var p1 = document.querySelector('.price1');
+			// 第二行
+			var n3 = document.querySelector('.num3');
+			var n4 = document.querySelector('.num4');
+			var b3 = document.querySelector('.btn3');
+			var b4 = document.querySelector('.btn4');
+			var p2 = document.querySelector('.price2');
+			// 总价
+			var p = document.querySelector('.price3');
+
+			// 第一行加减计算总价
+			b1.onclick = function() {
+				var n = n2.value;
+				if (n <= 0) {
+					alert('不能再减了！！！！');
+				} else {
+					n2.value = parseInt(n - 1);
+					p1.innerHTML = n1.value * n2.value;
+					p.innerHTML = parseFloat(p1.innerHTML) + parseFloat(p2.innerHTML);
+				}
+			};
+			b2.onclick = function() {
+				n2.value = parseInt(n) + 1;
+				p1.innerHTML = n1.value * n2.value;
+				p.innerHTML = parseFloat(p1.innerHTML) + parseFloat(p2.innerHTML);
+			};
+			// 第二行加减计算总价
+			b3.onclick = function() {
+				var n = n4.value;
+				if (n <= 0) {
+					alert('不能再减了！！！！');
+				} else {
+					n4.value = parseInt(n - 1);
+					p2.innerHTML = n3.value * n4.value;
+					p.innerHTML = parseFloat(p1.innerHTML) + parseFloat(p2.innerHTML);
+				}
+			};
+			b4.onclick = function() {
+				var n = n4.value;
+				n4.value = parseInt(n) + 1;
+				p2.innerHTML = n3.value * n4.value;
+				p.innerHTML = parseFloat(p1.innerHTML) + parseFloat(p2.innerHTML);
+			};
+		</script>
+	</body>
+</html>

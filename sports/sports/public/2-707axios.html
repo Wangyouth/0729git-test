@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios请求拦截</title>
+    <script src="javascripts/axios.js"></script>
+</head>
+
+<body>
+    <button>点击发送请求</button>
+    <div class="box"></div>
+
+    <script>
+        var btn = document.querySelector('button')
+        var box = document.querySelector('.box')
+        btn.onclick = function () {
+            //axios发送post请求
+            axios.post('/list77', {
+                username: 'aiai',
+                age: 33
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        // 添加请求拦截器
+        axios.interceptors.request.use(function (config) {
+            // 在发送请求之前做些什么
+            console.log('1111111111');
+            box.innerHTML = 'loading...'
+            return config;
+        }, function (error) {
+            // 对请求错误做些什么
+            return Promise.reject(error);
+        });
+
+        // 添加响应拦截器
+        axios.interceptors.response.use(function (response) {
+            // 对响应数据做点什么
+            console.log('22222222222');
+            box.innerHTML = ''
+            return response;
+        }, function (error) {
+            // 对响应错误做点什么
+            return Promise.reject(error);
+        });
+
+    </script>
+</body>
+
+</html>

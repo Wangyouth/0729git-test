@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>全选反选</title>
+	<style>
+		table {
+			margin: 20px auto;
+			background-color: thistle;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		table thead {
+			background-color: cornflowerblue;
+		}
+
+		table td {
+			width: 100px;
+			border: 1px solid #ddd;
+		}
+	</style>
+</head>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td><input type="checkbox" id='sel_all'></td>
+				<td>型号</td>
+				<td>价格</td>
+			</tr>
+		</thead>
+		<tbody id='sel_one'>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>小米8</td>
+				<td>2699</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>小米9</td>
+				<td>2999</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>小米10</td>
+				<td>3999</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>小米11</td>
+				<td>4699</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>小米12</td>
+				<td>4999</td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+		var selall = document.getElementById('sel_all');
+		var selone = document.getElementById('sel_one').getElementsByTagName('input');//获取
+		selall.onclick = function () {
+			selall.checked;
+			for (var i = 0; i < selone.length; i++) {
+				selone[i].checked = selall.checked;
+			}
+		}
+		for (var i = 0; i < selone.length; i++) {
+			selone[i].onclick = function () {
+				var flag = true;
+				for (var i = 0; i < selone.length; i++) {
+					if (selone[i].checked == false) {
+						flag = false;
+					}
+				}
+				selall.checked = flag;
+			}
+		}
+	</script>
+</body>
+
+</html>

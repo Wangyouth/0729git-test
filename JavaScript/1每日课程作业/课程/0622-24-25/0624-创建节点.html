@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建节点</title>
+		<style type="text/css">
+			textarea {
+				width: 200px;
+				height: 200px;
+			}
+
+			ul {
+				width: 400px;
+			}
+
+			ul li a {
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea></textarea>
+		<button type="button">发表留言</button>
+		<ul class="nav"></ul>
+		<script type="text/javascript">
+			var t = document.querySelector('textarea');
+			var btn = document.querySelector('button');
+			var ul = document.querySelector('ul');
+
+			btn.addEventListener('click', function() {
+				var li = document.createElement('li');//创建节点
+				li.innerHTML = t.value + '<a href="#">删除</a>';
+				t.value = '';
+				// ul.appendChild(li);//追加新的节点到ul后面
+				ul.insertBefore(li,ul.children[0]);//将新节点li添加到第一个元素之前
+				
+				//点击删除按钮，删除当前这条留言
+				var del = document.querySelector('a');
+				del.addEventListener('click', function() {
+					ul.removeChild(this.parentNode);
+				});
+			});
+			
+		</script>
+	</body>
+</html>

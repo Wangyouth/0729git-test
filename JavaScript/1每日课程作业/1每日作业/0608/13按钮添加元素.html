@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮添加元素到body</title>
+</head>
+
+<body>
+    <input type="button" value="点击添加元素" id="but1">
+    <input type="button" value="点击显示刚才添加的元素" id="but2">
+    <script>
+        var butone = document.getElementById('but1');
+        var buttwo = document.getElementById('but2');
+        var bodyElm = document.body;
+        var arr = [];  //设置一个数组接收输入的成绩
+        var i = 0;
+        var h = 987655566;
+
+
+        butone.onclick = function () {
+            arr[i] = prompt('请输入第一个成绩：');
+            i++;
+        }
+        buttwo.onclick = function () {
+            for (var j = 0; j < arr.length; j++) {
+                bodyElm.innerHTML += '<br />' + arr[j];
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

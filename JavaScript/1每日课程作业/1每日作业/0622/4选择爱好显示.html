@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>爱好</title>
+		<style type="text/css">
+			.liner {
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>选择你的爱好</h1>
+		<ul>
+			<li><input type="checkbox" name="0" value="音乐" />音乐</li>
+			<li><input type="checkbox" name="1" value="登山" />登山</li>
+			<li><input type="checkbox" name="2" value="游泳" />游泳</li>
+			<li><input type="checkbox" name="3" value="阅读" />阅读</li>
+			<li><input type="checkbox" name="4" value="打球" />打球</li>
+			<li><input type="checkbox" name="5" value="跑步" />跑步</li>
+			<li><input type="checkbox" name="6" value="其他" />其他</li>
+			<li class='liner'>-----------------------------</li>
+			<li><button type="button">查看我选择的爱好</button></li>
+		</ul>
+		<div class="texts">
+
+		</div>
+
+		<script type="text/javascript">
+			var ul = document.querySelector('ul');
+			var input = ul.getElementsByTagName('input');
+			var texts = document.querySelector('.texts');
+
+			// for (var i = 0; i < input.length; i++) {
+			// 	input[i].addEventListener('click', function() {
+			// 		console.log(this.value);
+			// 	});
+			// }
+			
+			ul.lastElementChild.firstChild.addEventListener('click', function() {
+				texts.innerHTML = '';
+				for (var i = 0; i < input.length; i++) {
+					if (input[i].checked == true) {
+						// console.log(input[i].value);
+						texts.innerHTML += input[i].value + '<br />';
+					}
+				}
+			});
+
+		</script>
+	</body>
+</html>

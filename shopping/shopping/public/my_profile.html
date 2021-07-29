@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>个人资料</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/my.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/my.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+    <style>
+        .page {
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .right-btn {
+            font-size: .32rem;
+            padding-right: .16rem;
+        }
+
+        .main {
+            width: 100%;
+            padding-top: 1.04rem;
+        }
+
+        .main ul {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #efefef;
+            padding: 0 .4rem;
+            box-sizing: border-box;
+        }
+
+        .main ul li:nth-child(1) {
+            font-size: 14px;
+        }
+
+        .main .head {
+            height: 1.22rem;
+        }
+
+        .main .head img {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .main .list {
+            height: .82rem;
+        }
+
+        .main .list li:nth-child(2) {
+            width: 70%;
+        }
+
+        .main .list li:nth-child(2) input {
+            text-align: right;
+            width: 100%;
+            height: .82rem;
+        }
+
+        .main .list .arrow {
+            width: .4rem;
+            height: .4rem;
+            background: url('images/common/right_arrow.png') no-repeat;
+            background-size: 100%;
+        }
+
+        /* 遮罩层 */
+        .van-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4.08rem;
+            background-color: #fff;
+            border-radius: .4rem .4rem 0 0;
+            z-index: 20;
+        }
+
+        .popup li {
+            width: 100%;
+            font-size: .32rem;
+            text-align: center;
+            border-bottom: 1px solid rgb(226, 222, 222);
+        }
+
+        .popup li:nth-child(1) {
+            position: relative;
+            height: .88rem;
+            line-height: .88rem;
+        }
+
+        .popup li:nth-child(1) span {
+            position: absolute;
+            top: .04rem;
+            right: .2rem;
+            width: .8rem;
+            height: .8rem;
+            background: url('images/home/goods/x.png') no-repeat;
+            background-size: 100%;
+        }
+
+        .popup li:nth-child(2),
+        .popup li:nth-child(3) {
+            height: 1rem;
+            line-height: 1rem;
+        }
+
+        .popup li:nth-child(4) {
+            height: 1.2rem;
+            line-height: 1.2rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page">
+        <!-- 顶部--开始-->
+        <div class="sub-header">
+            <div class="back"></div>
+            <div class="title">个人资料</div>
+            <div class="right-btn">保存</div>
+        </div>
+        <!-- 顶部--结束-->
+
+        <!-- 内容--开始-->
+        <div class="main">
+            <ul class="head">
+                <li>头像</li>
+                <li><img src="images/user/my/default-head.png" alt=""></li>
+            </ul>
+            <ul class="list">
+                <li>昵称</li>
+                <li> <input type="text" placeholder="请输入昵称"></li>
+                <li class="arrow"></li>
+            </ul>
+            <ul class="list listsex">
+                <li>性别</li>
+                <li> <input type="text" placeholder="请选择性别" readonly='readonly'></li>
+                <li class="arrow"></li>
+            </ul>
+
+        </div>
+        <div class="van-overlay"></div>
+        <ul class="popup">
+            <li>请选择性别 <span id="select-close"></span> </li>
+            <li id="select-man">男</li>
+            <li id="select-woman">女</li>
+            <li id="select-off">取消</li>
+        </ul>
+        <!-- 内容--结束-->
+    </div>
+
+
+    <script>
+        $(function () {
+            // 点击顶部返回
+            $('.sub-header .back').on('click', function () {
+                window.history.back(-1)
+            })
+            // 点击选择头像
+            $('.head img').on('click', function () {
+                alert('选择头像')
+            })
+            // 点击选择性别
+            $('.listsex').on('click', function () {
+                $('.van-overlay').css('display', 'block')
+                $('.popup').css('display', 'block')
+                //取消或者关闭
+                $('#select-close,#select-off,.van-overlay').on('click', function () {
+                    $('.van-overlay').css('display', 'none')
+                    $('.popup').css('display', 'none')
+                })
+                //选择男
+                $('#select-man').on('click', function () {
+                    $('.van-overlay').css('display', 'none')
+                    $('.popup').css('display', 'none')
+                    $('.listsex input').val('男')
+                })
+                // 选择女
+                $('#select-woman').on('click', function () {
+                    $('.van-overlay').css('display', 'none')
+                    $('.popup').css('display', 'none')
+                    $('.listsex input').val('女')
+                })
+            })
+
+        })
+    </script>
+</body>
+
+</html>

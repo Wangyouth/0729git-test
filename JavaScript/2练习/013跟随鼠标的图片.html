@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ch-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>跟随鼠的图片</title>
+	<style type="text/css">
+		img {
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<img src="images/move.png">
+</body>
+<script>
+	var img = document.querySelector('img');
+	document.addEventListener('mousemove', function (e) {
+		var x = e.pageX
+		var y = e.pageY
+		img.style.left = x + 'px'; //注意要加单位
+		img.style.top = y + 'px';
+	});
+</script>
+
+</html>

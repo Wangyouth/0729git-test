@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="X-UA-Compatible" content="IE=edge" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/3.3.1jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/transition.js" type="text/javascript" charset="utf-8"></script>
+		<title> </title>
+ <style type="text/css">
+ 	 
+ </style>
+	</head>
+	<body>
+		<!--警告框 -->
+		<br><br><br><br><br><br>
+		<button id="myAlert" type="button" class="close" data-dismiss='alert' aria-lable='Close' >
+			<span aria-hidden='true'>&times;</span>
+		</button>
+		
+		
+		<!--弹出 -->
+		<br><br><br><br><br><br>
+		<button type="button" class="btn btn-link" data-container='body' data-toggle='popover' data-plancement='left' data-content='这是左边出现的弹出框'>左侧</button>
+		
+		
+		<!--提示 -->
+		<br><br><br><br><br><br>
+		<div class="container">
+		<button type="button" class="btn btn-info" data-toggle='tooltip' data-placement='bottom' title="我在下面">提示-下</button>
+		<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="上面">上</button> 
+		</div>
+		
+		
+		
+		<!--选项卡 -->
+		<br><br><br><br><br>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#name1" data-toggle='tab'>首页</a></li>
+			<li><a href="#name2" data-toggle='tab'>分类</a></li>
+			<li><a href="#name3" data-toggle='tab'>购物车</a></li>
+			<li><a href="#name4" data-toggle='tab'>我的</a></li>
+		</ul>
+		
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="name1">
+				1111111111111111111
+			</div>
+			<div class="tab-pane " id="name2">
+				22222222222222222222222
+			</div>
+			<div class="tab-pane " id="name3">
+				33333333333333333333333
+			</div>
+			<div class="tab-pane " id="name4">
+				44444444444444444444444444
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		<script type="text/javascript">
+		$('#myAlert').alert();
+		$('#myAlert').on('closed.bs.alert', function () {
+		  // do something…
+		});
+		
+		
+		$(function () {
+		  $('[data-toggle="popover"]').popover();
+		});
+		
+		
+			 $(function () {
+			   $('[data-toggle="tooltip"]').tooltip();
+			 });
+		</script>
+	</body>
+</html>

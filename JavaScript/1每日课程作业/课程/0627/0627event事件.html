@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 50px;
+				height: 50px;
+				background-color: #0000FF;
+				position: absolute;
+				left: 40;
+				top: 40;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script type="text/javascript">
+			var box = document.querySelector('.box');
+			document.onkeydown = function(ev) {
+				var ev = ev || event;
+				var getkeycode = ev.keyCode;
+				//37,38,39,40左上右下
+				switch (getkeycode) {
+					case 37:
+						box.style.left = box.offsetLeft - 2 + 'px';
+						break;
+					case 39:
+						box.style.left = box.offsetLeft + 2 + 'px';
+						break;
+					case 38:
+						box.style.top = box.offsetTop - 2 + 'px';
+						break;
+					case 40:
+						box.style.top = box.offsetTop + 2 + 'px';
+						break;
+				}
+			};
+		</script>
+	</body>
+</html>

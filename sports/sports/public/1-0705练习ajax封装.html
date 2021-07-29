@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0705练习ajax封装</title>
+</head>
+
+<body>
+    <script>
+        function doAjax(options) {
+            var defaults = {
+                type: 'get',
+                url: '',
+                data: {},
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                success: function (data, xhr) { },
+                error: function (data, xhr) { }
+            }
+            Object.assign(defaults, options)
+
+            var xhr
+            var str = ''
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest()
+            } else {
+                xhr = new ActiveXObject('Microsoft.XMLHTT')//Microsoft.XMLHTT
+            }
+
+            for (var attr in defaults.data) {
+                str += attr + '=' + defaults.data[attr] + '&'
+            }
+            str = str.substr(0, str.length - 1)
+
+            if (defaults.type == 'get') {
+                defaults.url = defaults.url + '?' + str
+            }
+            xhr.open(defaults.type, defaults.url)
+            if (defaults.type == 'post') {
+                var contentType = defaults.header['Content-Type']
+                xhr.setRequestHeader('Content-Type', contentType)
+                if (contentType == 'application/json') {
+                    xhr.send(JSON.stringify(defaults.data))
+                } else {
+                    xhr.send(str)
+                }
+            } else {
+                xhr.send()
+            }
+
+            // if (options.type == 'get') {
+            //     xhr.open(options.type, options.url + '?' + str)
+            //     xhr.send()
+            // } else if (options.type == 'post') {
+            //     xhr.open(options.type, options.url)
+            //     var contentType = options.header['Content-Type']
+            //     xhr.setRequestHeader('Content-Type', contentType)
+            //     if (contentType == 'application/json') {
+            //         xhr.send(JSON.stringify(options.data))
+            //     } else {
+            //         xhr.send(str)
+            //     }
+            // }
+
+            xhr.onload = function () {
+
+                var contentType = xhr.getResponseHeader('Content-Type')
+                var responseText = xhr.responseText
+                if (contentType.includes('application/json')) {
+                    responseText = JSON.parse(responseText)
+                }
+                if (xhr.status == 200) {
+                    defaults.success(responseText, xhr)
+                } else {
+                    defaults.error(responseText, xhr)
+                }
+            }
+        }
+
+        doAjax({
+            type: 'get',
+            url: '/listlist',
+            data: {
+                name: 'zhangsan',
+                age: 30
+            },
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // 'Content-Type': 'application/json'
+            },
+            success: function (data, xhr) {
+                console.log('demo请求成功')
+                console.log(data)
+            },
+            error: function (data, xhr) {
+                console.log('demo请求失败')
+                console.log(data)
+                console.log(xhr)
+            }
+        })
+    </script>
+</body>
+
+</html>

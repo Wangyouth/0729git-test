@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ajax的封装</title>
+	</head>
+	<body>
+		<button type="button" id='btn1'>ajax11111</button>
+		<button type="button" id='btn2'>ajax22222</button>
+		<script type="text/javascript">
+			function doAjax(method, url, fn) {
+				//1创建
+				if (window.XMLHttpRequest) {
+					var oajax = new XMLHttpRequest()
+				} else {
+					var oajax = new ActiveXObject('Microsoft.XMLHTT')
+				}
+				//链接服务器
+				oajax.open(method, url)
+				//send()
+				oajax.send()
+				//返回值
+				oajax.onreadystatechange = function() {
+					if (oajax.readyState == 4 && oajax.status == 200) {
+						fn(oajax.responseText)
+					} else {
+						console.log('错误------状态码readystate--' + oajax.readyState + '-----status--' + oajax.status);
+					}
+				}
+
+			}
+
+			document.querySelector('#btn1').onclick = function() {
+				doAjax('get', 'data/test1.txt', function(src) {
+					console.log(src);
+				})
+			}
+
+			document.querySelector('#btn2').onclick = function() {
+				doAjax('get', 'data/test2.txt', function(src) {
+					console.log(src);
+				})
+			}
+		</script>
+	</body>
+</html>

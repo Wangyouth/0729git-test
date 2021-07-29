@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - Custom Font</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+	<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+	<SCRIPT type="text/javascript">
+		var setting = {
+			view: {
+				fontCss: getFont,
+				nameIsHTML: true
+			}
+		};
+
+		var zNodes =[
+			{ name:'粗体字', font:{'font-weight':'bold'} },
+			{ name:'斜体字', font:{'font-style':'italic'}},
+			{ name:'有背景的字', font:{'background-color':'black', 'color':'white'}},
+			{ name:'红色字', font:{'color':'red'}},
+			{ name:'蓝色字', font:{'color':'blue'}},
+			{ name:'<span style=\'color:blue;margin-right:0px;\'>view</span>.<span style=\'color:red;margin-right:0px;\'>nameIsHTML</span>'},
+			{ name:'zTree 默认样式'}
+		];
+
+		function getFont(treeId, node) {
+			return node.font ? node.font : {};
+		}
+
+		$(document).ready(function(){
+			$.fn.zTree.init($('#treeDemo'), setting, zNodes);
+		});
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+	<div class="zTreeDemoBackground left">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+
+</BODY>
+</HTML>

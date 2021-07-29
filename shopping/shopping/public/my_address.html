@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>地址管理</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/my.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/my.js"></script>
+    <script src="javascripts/common/public.js"></script>
+    <style>
+        .page {
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100%;
+            padding-top: 1.04rem;
+        }
+
+        .main .list {
+            width: 100%;
+            height: 1.2rem;
+            border-bottom: 1px solid #efefef;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main .list .name-wrap {
+            position: absolute;
+            left: 5%;
+            top: 12%;
+            width: auto;
+            height: auto;
+            font-size: .28rem;
+        }
+
+        .main .list .address {
+            position: absolute;
+            left: 5%;
+            top: 56%;
+            width: auto;
+            height: auto;
+            font-size: .24rem;
+        }
+
+        .main .list .address span {
+            color: #fdb709;
+        }
+
+        .main .list .right-arrow {
+            position: absolute;
+            right: 5%;
+            top: 25%;
+            width: .4rem;
+            height: .4rem;
+            background: url('images/common/right_arrow.png') no-repeat;
+            background-size: 100%;
+        }
+
+        .add-btn {
+            position: fixed;
+            bottom: .4rem;
+            left: .76rem;
+            width: 6rem;
+            height: .8rem;
+            border-radius: .1rem;
+            color: #fff;
+            background-color: #eb1625;
+            text-align: center;
+            line-height: .8rem;
+            font-size: .28rem;
+            z-index: 3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page">
+        <!-- 顶部开始-->
+        <div class="sub-header">
+            <div class="back"></div>
+            <div class="title">收货地址管理</div>
+        </div>
+        <!-- 顶部结束-->
+
+        <!-- 中间地址列表 开始-->
+        <div class="main">
+
+            <script type="text/html" id="addresslist">
+                {{each}}
+            <div class="list">
+                <div class="name-wrap">
+                    <span>{{$value.receiver}}</span>
+                    <span>{{$value.cellphone}}</span>
+                </div>
+                <div class="address"><span>[默认]</span> {{$value.address_0}}{{$value.address_1}}</div>
+                <div class="right-arrow"></div>
+            </div>
+            {{/each}}
+            </script>
+
+            <div class="list">
+                <div class="name-wrap">
+                    <span>张三</span>
+                    <span>13100000000</span>
+                </div>
+                <div class="address"><span>[默认]</span>浙江省杭州市余杭区好运街道</div>
+                <div class="right-arrow"></div>
+            </div>
+
+        </div>
+        <!-- 中间地址列表 结束-->
+
+
+        <!-- 添加按钮 开始-->
+        <div class="add-btn">+添加新地址</div>
+        <!-- 添加按钮 结束-->
+
+
+
+
+
+    </div> <!--  page -->
+
+    <script>
+        $(function () {
+            // 加载--地址--数据
+            var addresslist = localStorage.getItem('addresslist')
+            addresslist = JSON.parse(addresslist)
+            var addresslisthtml = document.querySelector('.main')
+            addresslisthtml.innerHTML = template('addresslist', addresslist)
+
+            // 点击顶部返回
+            $('.sub-header .back').on('click', function () {
+                window.history.back(-1)
+            })
+
+            // 点击添加新地址
+            $('.add-btn').on('click', function () {
+                window.location.href = 'my_address_add.html'
+            })
+
+
+
+        })  //加载
+    </script>
+
+
+
+
+</body>
+
+</html>

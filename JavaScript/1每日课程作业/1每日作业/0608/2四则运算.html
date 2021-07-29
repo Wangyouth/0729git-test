@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>四则运算</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// function n1(){
+			// 	var num = prompt('请输入第一个数：');
+			// 	return num;
+			// }
+			// function n2(){
+			// 	var num = prompt('请输入第二个数：');
+			// 	return num;
+			// }
+			// function ope(){
+			// 	var num = prompt('请输入运算符：');
+			// 	return num;
+			// }
+
+			function sum(a, b) {
+				var sum = parseInt(a)+parseInt(b);
+				return sum;
+			}
+
+			function sub(a, b) {
+				return parseInt(a-b);
+			}
+
+			function mul(a, b) {
+				return parseInt(a*b);
+			}
+
+			function divs(a, b) {
+				return parseInt(a/b);
+			}
+
+			do {
+				var n1 = prompt('请输入第一个数：');
+				var n2 = prompt('请输入第二个数：');
+				var ope = prompt('请输入运算符：');
+				if (ope === '+') {
+					alert('加法运算结果是：' + sum(n1,n2));
+				}else if(ope === '-'){
+					alert('减法运算结果是：' + sub(n1, n2));
+				}else if(ope === '*'){
+					alert('乘法运算结果是：' + mul(n1, n2));
+				}else if(ope === '/'){
+					alert('除法运算结果是：' + divs(n1, n2));
+				}else{break;}
+			} while (true)
+		</script>
+	</body>
+</html>

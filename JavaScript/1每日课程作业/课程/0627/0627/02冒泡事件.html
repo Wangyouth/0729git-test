@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{padding: 40px;}
+			#box1{background-color: red;}
+			#box2{background-color: yellow;}
+			#box3{background-color: green;}
+		</style>
+	</head>
+	<body>
+		<div id="box1">box1
+			<div id="box2">box2
+				<div id="box3">box3</div>
+			</div>
+		</div>
+		<script>
+			// 事件冒泡:当一个元素接收到事件的时候,会把已经收到的所有的事件传递给父级,直到window,事件冒泡默认情况是存在的
+			var obox1=document.getElementById('box1'),
+			obox2=document.getElementById('box2'),
+			obox3=document.getElementById('box3');
+			var obody=document.getElementById('body');
+			function getid(){
+				console.log(this.id)
+				event.stopPropagation();
+			}
+			obox1.onclick=getid;
+			obox2.onclick=getid;
+			obox3.onclick=getid;
+			// 阻止事件冒泡:
+			// ie:event.cancelBubble=true;
+			// 非ie下:event.stopPropagation();
+		</script>
+	</body>
+</html>

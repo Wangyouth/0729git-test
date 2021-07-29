@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>日期-倒计时实现</title>
+		<style type="text/css">
+			.box {
+				width: 300px;
+				height: 300px;
+				border: 1px solid #000000;
+			}
+
+			.box span {
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				background-color: #000000;
+				color: #FFFFFF;
+				text-align: center;
+				line-height: 40px;
+				font-size: 20px;
+				font-weight: 700;	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span class="hou"></span>
+			<span class="min"></span>
+			<span class="sec"></span>
+
+		</div>
+		<script type="text/javascript">
+			var hou = document.querySelector('.hou');
+			var min = document.querySelector('.min');
+			var sec = document.querySelector('.sec');
+			var inputTime = +new Date('2021-6-21 15:00:00');
+			lasttime();
+			setInterval(lasttime, 1000);
+
+			function lasttime() {
+				var nowTime = +new Date();
+				var times = (inputTime - nowTime) / 1000; //输入时间减去当前时间，就是倒计时的时间
+				var h = parseInt(times / 60 / 60 % 24);
+				h = h < 0 ? '0' + h : h;
+				hou.innerHTML = h;
+				var m = parseInt(times / 60 % 60);
+				m = m < 0 ? '0' + m : m;
+				min.innerHTML = m;
+				var s = parseInt(times % 60);
+				s = s < 0 ? '0' + s : s;
+				sec.innerHTML = s;
+			}
+		</script>
+	</body>
+</html>

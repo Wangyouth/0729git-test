@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户表单输入</title>
+		<style type="text/css">
+			span{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		用户名：<input type="text" placeholder="hello kgc" />
+		<span>&nbsp;&nbsp;至少6-12位</span>
+		<script type="text/javascript">
+			var inp=document.querySelector('input');
+			var spa=document.querySelector('span');
+			
+			inp.addEventListener('focus',function(){
+				inp.style.color='red';
+				spa.style.display='block';
+			} );
+			
+		</script>
+	</body>
+	
+</html>

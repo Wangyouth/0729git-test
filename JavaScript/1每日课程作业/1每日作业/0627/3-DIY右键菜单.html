@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>改变默认的鼠标右键</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background-color: #BDB76B;
+			}
+
+			h1 {
+				color: #FFFFFF;
+			}
+
+			ul {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 200px;
+				background-color: white;
+				border-radius: 10px;
+				margin-left: 10px;
+				overflow: hidden;
+			}
+
+			ul li {
+				list-style: none;
+				color: #636362;
+				padding: 10px 0 10px 20px;
+				line-height: 20px;
+			}
+
+			ul li:hover {
+				color: #FFFFFF;
+				border-left: 4px solid purple;
+				background-color: mediumpurple;
+			}
+		</style>
+		<script type="text/javascript">
+			window.addEventListener('load',function(){
+				var oul=document.querySelector('ul');
+				document.oncontextmenu=function(ev){
+					ev=ev||event;
+					var x=ev.clientX;
+					var y=ev.clientY;
+					oul.style.display='block';
+					oul.style.left=x+'px';
+					oul.style.top=y+'px';
+					return false;
+				};
+				document.onclick=function(){
+					oul.style.display='none';
+				};
+			} );
+		</script>
+	</head>
+	<body>
+		<h1>点击鼠标右键</h1>
+		<ul>
+			<li>HTML5+CSS3</li>
+			<li>JavaScript</li>
+			<li>jQuery</li>
+			<li>angularjs</li>
+			<li>Bootstrap</li>
+		</ul>
+	</body>
+</html>

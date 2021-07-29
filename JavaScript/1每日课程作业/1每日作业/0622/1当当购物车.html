@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>当当购物车</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			li {
+				list-style: none;
+			}
+
+			.w {
+				width: 811px;
+				/* margin: 10px auto; */
+			}
+
+			.title span {
+				float: right;
+				margin-top: 10px;
+				width: 70px;
+				height: 30px;
+				background-color: #FF3333;
+				border-radius: 10px;
+				line-height: 30px;
+				color: #FFFFFF;
+				text-align: center;
+			}
+
+			.list {
+				position: relative;
+				height: 416px;
+				background: url(img/作业1images/images/shoppingBg.jpg) no-repeat;
+			}
+
+			.list_ul {
+				/* border: 1px solid black; */
+				top: 100px;
+				right: 10px;
+				position: absolute;
+				width: 400px;
+			}
+
+			.list_ul li {
+				margin: 30px 0;
+				height: 72px;
+			}
+
+			.list_ul li span:nth-child(1) {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+			}
+
+			.list_ul li button:nth-child(2) {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				border: 1px solid black;
+				text-align: center;
+				margin-left: 40px;
+				background-color: #DDDDDD;
+			}
+
+			.list_ul li span:nth-child(3) {
+				display: inline-block;
+				width: 40px;
+				height: 30px;
+				line-height: 24px;
+				text-align: center;
+			}
+			.list_ul li button:nth-child(4) {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				border: 1px solid black;
+				text-align: center;
+				background-color: #DDDDDD;
+			}
+
+			.list_ul li span:nth-child(5)::before {
+				content: '￥';
+			}
+			.list_ul li span:nth-child(5) {
+				display: inline-block;
+				width: 60px;
+				height: 30px;
+				margin-left: 40px;
+				background-color: #6495ED;
+			}
+
+			ul li span:last-child {
+				display: inline-block;
+				float: right;
+				height: 70px;
+				padding-top: 12px;
+				text-align: center;
+			}
+
+			.setele {
+				position: absolute;
+				bottom: 30px;
+				right: 0;
+				width: 100px;
+				height: 30px;
+				border: transparent;
+				border-radius: 12px;
+				color: #FFFFFF;
+				background-color: #FF3333;
+			}
+
+			.price {
+				position: absolute;
+				bottom: 36px;
+				right: 142px;
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				background-color: #FF3333;
+			}
+
+			.price::before {
+				content: '￥';
+			}
+			
+			.cont{
+				display: none;
+				height: 100px;
+				border: 1px solid #FF3333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w title">
+			<img src="img/作业1images/images/dd_logo.jpg"><span>关闭</span>
+		</div>
+		<div class="w list">
+			<ul class="list_ul">
+				<li>
+					&yen;<span>21.90</span>
+					<button class="sub">-</button>
+					<span>0</span>
+					<button class="add">+</button>
+					<span></span>
+					<span class='movanddel'><a href="javascript:;">移入收藏夹</a><br><a href="javascript:;">删除</a></span>
+				</li>
+			</ul>
+
+			<div class="price">
+			</div>
+			<button type="button" class="setele">结算</button>
+
+		</div>
+		<div class=" w cont">
+			
+		</div>
+
+
+		<script type="text/javascript">
+			//获取元素setele
+			var ul = document.querySelector('.list_ul');
+			var btnsub = document.querySelector('.sub');
+			var btnadd = document.querySelector('.add');
+			var movanddel = document.querySelector('.movanddel');
+			var price = document.querySelector('.price');
+			var setele = document.querySelector('.setele');
+			var cont = document.querySelector('.cont');
+			//数量减，价格减
+			btnsub.addEventListener('click', function() {
+				var nav=parseInt(this.nextElementSibling.innerHTML);
+				if(nav==0){
+					alert('不能减了');
+				}else{
+					nav--;
+					this.nextElementSibling.innerHTML=nav;
+					var oneprice=this.parentNode.children[0].innerHTML;
+					this.parentNode.children[4].innerHTML=nav*oneprice;
+					price.innerHTML=nav*oneprice;
+				}
+			});
+			//数量加，价格加
+			btnadd.addEventListener('click', function() {
+				this.style.cursor='pointer';
+				var nav=parseInt(this.previousElementSibling.innerHTML);
+				nav++;
+				this.previousElementSibling.innerHTML=nav;
+				var oneprice=this.parentNode.children[0].innerHTML;
+				this.nextElementSibling.innerHTML=nav*oneprice;
+				price.innerHTML=nav*oneprice;
+			});
+			
+			movanddel.children[0].addEventListener('click', function(){
+				alert('确定移入收藏夹吗');
+			});
+			
+			movanddel.children[2].addEventListener('click', function(){
+				alert('确定删除吗');
+				ul.removeChild(this.parentNode.parentNode);
+			});
+			
+			setele.addEventListener('click', function(){
+				cont.style.display='block';
+				cont.innerHTML='您购买的商品信息如下：<br />白岩松：白说：￥'+ul.children[0].children[4].innerHTML;
+			});
+		</script>
+	</body>
+</html>

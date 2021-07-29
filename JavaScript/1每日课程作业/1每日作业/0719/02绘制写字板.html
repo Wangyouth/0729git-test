@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>绘制写字板</title>
+	</head>
+	<body style="background-color: #000000;">
+		<canvas id="ocan" width="500" height="500" style="background-color: #FFFFFF;"></canvas>
+		<script type="text/javascript">
+			var oCan=document.getElementById('ocan');
+			var oc=oCan.getContext('2d');//创建绘图环境
+			
+			oCan.onmousedown=function(ev){
+				var downX=ev.clientX-this.offsetLeft;
+				var downY=ev.clientY-this.offserTop;
+				var aa=this;
+				oc.moveTo(downX,downY);
+				
+				document.onmousemove=function(ev){
+					var moveLeft=ev.clientX-aa.offsetLeft;
+					var moveTop=ev.clientY-aa.offsetTop;
+					oc.lineTo(moveLeft,moveTop);
+					oc.stroke();
+				};
+				document.onmouseup=function(){
+					document.onmousemove=document.onmouseup=null;
+				};
+			};
+		</script>
+	</body>
+</html>

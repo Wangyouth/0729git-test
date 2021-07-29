@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>简单留言板
+		</title>
+		<style type="text/css">
+			textarea {
+				width: 200px;
+				height: 80px;
+			}
+			ul li {
+				list-style: none;
+				width: 200px;
+			}
+			ul li a {
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>简单留言板</h1>
+		<textarea></textarea>
+		<button type="button">发表留言</button>
+		<ul>
+		</ul>
+		<script type="text/javascript">
+			var tarea = document.querySelector('textarea');
+			var btn = document.querySelector('button');
+			var ul = document.querySelector('ul');		
+
+			btn.addEventListener('click', function() {
+				var newli = document.createElement('li');
+				newli.innerHTML = tarea.value+'<a href="#">删除</a>';
+				tarea.value = '';
+				// ul.appendChild(newli);//最后添加
+				ul.insertBefore(newli,ul.children[0]);//添加到第一个之前
+				
+				var del=document.querySelector('a');
+				del.addEventListener('click', function() {
+					ul.removeChild(this.parentNode);
+				});
+			});
+			
+		</script>
+	</body>
+</html>

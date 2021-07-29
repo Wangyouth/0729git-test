@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- event 用来获取事物的详细信息---鼠标位置/键盘按键 -->
+		<script type="text/javascript">
+			// document.onclick=function(ev){
+			// 	var ev=ev||event;
+			// 	console.log(ev)
+			// }
+			// 获取鼠标的横坐标位置和纵坐标位置
+			// ev.clientX 鼠标的横坐标位置
+			// ev.clientY 鼠标的纵坐标位置
+			
+			
+			// document.onclick=function(ev){
+			// 	var ev=ev||event;
+			// 	console.log(ev.clientX)
+			// 	console.log(ev.clientY)
+			// }
+			
+			// 获取键盘值:
+			// ctrlKey :ctrl,
+			// altKey:alt;
+			// shiftKey:shift,
+			// keyCode获取对应触发事件的键盘,对应按键为一个数值
+			document.onkeydown=function(ev){
+					var ev=ev||event;
+					// if(ev.keyCode==13){
+					// 	alert("当前按键是回车")
+					// }
+					
+					if(ev.ctrlKey){
+						alert("当前按键是回车")
+					}else if(ev.altKey){
+						alert("当前按键是Alt")
+					}else if(ev.shiftKey){
+						alert("当前按键是shift")
+					}
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

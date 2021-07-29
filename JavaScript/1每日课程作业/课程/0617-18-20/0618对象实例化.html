@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>对象实例化</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// function douser(name,detil){
+			// 	var user=new Object();
+			// 		user.name=name;
+			// 		user.detil=detil;
+			// 		user.show=function(){
+			// 			console.log(this.name+'--'+this.detil);
+			// 		};
+			// 		return user;
+			// }
+
+			// var user1=douser('安安安','哒哒哒');
+			// user1.show();
+
+
+			// function User(name,detil){
+			// 	this.name=name;
+			// 	this.detil=detil;
+
+			// }
+			// var user1 = new User('wowoow','哈哈哈哈');
+			// console.log(user1.detil);
+
+
+
+			// 	function Student(name,sex,cla){
+			// 		this.name=name;
+			// 		this.sex=sex;
+			// 		this.cla=cla;
+			// 		this.stu=function(){
+			// 			document.write('我是学生，我爱学习');
+			// 		};
+			// 	}
+
+			// 	var stu1=new Student('wangmng','男','五班');
+			// 	console.log(stu1.name);
+
+
+			//原形
+			// function User(name, sex) {
+			// 	this.name = name;
+			// 	this.sex = sex;
+			// }
+			// User.prototype.show = function() {
+			// 	console.log(this.name + '--' + this.sex);
+			// };
+			// var user1 = new User('hhhhhhh', 'man');
+			// user1.show();
+
+
+			// String.prototype.abc = 1;
+			// String.prototype.fn = function() {
+			// 	return this + '哈哈哈';
+			// };
+			// var str = new String('3333');
+			// console.log(str.fn());
+
+			// //用原型方法去重
+			// var arr = [3, 5, 33, 46, 77, 3, 5, 14, 33, 33, 33];
+			// Array.prototype.clean = function(){
+			// 	var newarr = [];
+			// 	newarr[0] = arr[0];
+			// 	var index =0;
+			// 	for (i = 0; i < arr.length; i++) {
+			// 		if (newarr[index] != arr[i]) {
+			// 			newarr.push(arr[i]);
+			// 			index++;
+			// 		} 
+			// 	}
+			// 	return newarr;
+			// };
+			// console.log(arr.clean());
+			
+			//继承
+			var Teacher={
+				name:'王老师',
+				sex:'男',
+				age:20,
+				say:function(){
+					console.log(this.name+this.sex+this.age);
+				}
+			};
+			 
+			var Student={
+				name:'王同学'
+			};
+			Teacher.say.call(Student);
+			// Student.say();
+		</script>
+	</body>
+</html>

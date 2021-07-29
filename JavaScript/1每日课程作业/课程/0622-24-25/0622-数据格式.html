@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据格式</title>
+	</head>
+	<body>
+		<input type="text" class="t1">
+		<button type="button" class="set">添加数据</button>
+		<button type="button" class="get">获取数据</button>
+		<button type="button" class="del">删除数据</button>
+		<button type="button" class="cle">清空数据</button>
+		<br><br>
+		<input type="text" class='t2'>
+		<script type="text/javascript">
+		//JSON
+			var a ={'name':'cici','age':'20'};
+			console.log(a);
+			var b=JSON.stringify(a);
+			console.log(b);
+			
+			// var a ='{"name":"cici","age":"20"}';
+			// console.log(a);
+			// var b=JSON.parse(a);
+			// console.log(b);
+			
+		// localStorage
+			// localStorage.setItem('key1','hello1');
+			// localStorage.setItem('key2','hello2');
+			// localStorage.setItem('key3','hello3');
+			// var storage=window.localStorage;
+			// for (var i=0,len=storage.length;i<len;i++) {
+			// 	var key=storage.key[i];
+			// 	var value=storage.getItem(key);
+			// 	console.log(key+'+'+value);
+			// }
+			
+			var t1=document.querySelector('.t1');
+			var t2=document.querySelector('.t2');
+			var set=document.querySelector('.set');
+			var get=document.querySelector('.get');
+			var del=document.querySelector('.del');
+			var cle=document.querySelector('.cle');
+			
+			
+		// sessionStorage
+			set.addEventListener('click',function(){
+				sessionStorage.setItem('username',t1.value);
+			} );
+			
+			get.addEventListener('click',function(){
+				console.log(sessionStorage.getItem('username'));
+				if(sessionStorage.getItem('username')==null){
+					alert('sessionStorage没有数据');
+				}else{
+					t2.value=sessionStorage.getItem('username');
+				}
+			} );
+			del.addEventListener('click',function(){
+				sessionStorage.removeItem('username');
+				t2.value='';
+			} );
+			cle.addEventListener('click',function(){
+				sessionStorage.clear();
+			} );
+			
+			
+		</script>
+	</body>
+</html>

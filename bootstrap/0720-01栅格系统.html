@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="X-UA-Compatible" content="IE=edge"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script src="js/3.3.1jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>12栅格系统</title>
+		<style type="text/css">
+			div[class*='col-']{
+				background-color: #ccc;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- <div class="row row-no-gutters">
+				<div class="col-md-8">主题内容</div>
+				<div class="col-md-4">侧边栏</div>
+			</div>
+			<div class="row row-no-gutters">
+				<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">主题内容</div>
+				<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">侧边栏</div>
+				<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">侧边栏</div>
+			</div> -->
+			
+			<!-- 列偏移 -->
+			<!-- <div class="row">
+				<div class="col-md-4">主题内容</div>
+				<div class="col-md-4 col-md-offset-4">侧边栏</div>
+			</div> -->
+			
+			<!-- 列嵌套 -->
+			<div class="row">
+				<div class="col-md-6">
+					主题内容
+					<div class="row">
+						<div class="col-md-2">col-md-2</div>
+						<div class="col-md-4">col-md-4</div>
+						<div class="col-md-6">col-md-6</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">col-md-6</div>
+					<div class="col-md-6">col-md-6</div>
+					侧边栏
+				</div>
+			</div>
+			
+			<br>
+			<!-- 列排序 -->
+			<div class="row ">
+				<div class="col-md-8 col-md-push-4">前面888</div>
+				<div class="col-md-4 col-md-pull-8">后面444</div>
+			</div>
+			
+			<br>
+			<!-- 对齐 -->
+			<p class="text-left">Left aligned text. 左对齐</p>
+			<p class="text-center">Center aligned text.居中</p>
+			<p class="text-right">Right aligned text.右对齐</p>
+			<p class="text-justify">Justified text.</p>
+			<p class="text-nowrap">No wrap text.</p>
+			
+			
+			<br>
+			<!-- 表单 -->
+			<form action="" method="">
+				<div class="form-group">
+					<label>用户名</label>
+					<input class="form-control" type="text" placeholder="请输入用户名" />
+				</div>
+				<div class="form-group">
+					<label>密码</label>
+					<input type="password" placeholder="请输入用户名"/>
+				</div>
+			</form>
+			
+			
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 500px;
+            height: 200px;
+            margin: 20px auto;
+            border: 1px solid rgb(15, 15, 15);
+        }
+
+        li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        ul {
+            border-bottom: 1px solid rgb(138, 133, 133);
+            overflow: hidden;
+        }
+
+        ul li {
+            float: left;
+            margin: 0 10px;
+            padding: 0 10px;
+        }
+
+        .tap_list_first {
+            background-color: rgba(231, 62, 10, 0.856);
+            color: white;
+            border-bottom: 1px solid blue;
+        }
+
+        .itme {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="tap_list">
+            <ul>
+                <li class="tap_list_first">商品介绍</li>
+                <li>商品照片</li>
+                <li>商品售后</li>
+                <li>物流信息</li>
+            </ul>
+        </div>
+        <div class="tab_nav">
+            <div class="itme" style="display: block;">这里是商品介绍模块1111</div>
+            <div class="itme">这里有商品照片2222</div>
+            <div class="itme">找售后，售后，售后3333</div>
+            <div class="itme">发货了--完成<br>到达杭州--完成<br>正在派送--派送中....</div>
+        </div>
+    </div>
+    <script>
+        var taplist = document.querySelector('.tap_list');
+        var lis = taplist.querySelectorAll('li');
+        var itmes = document.querySelectorAll('.itme');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].onclick = function () {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                this.className = 'tap_list_first';
+
+                var index = this.getAttribute('index');
+                for (i = 0; i < itmes.length; i++) {
+                    itmes[i].style.display = 'none';
+                }
+                itmes[index].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>移除删除</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			a {
+				text-decoration: none;
+				color: #000000;
+			}
+
+			.w {
+				width: 1000px;
+				margin: 10px auto;
+			}
+
+			ul {
+				width: 800px;
+				margin: 0 auto;
+			}
+
+			ul li {
+				list-style: none;
+				padding: 20px;
+				border: 1px solid #999999;
+				background-color: #fafafa;
+			}
+
+			ul li span:nth-child(2) {
+				display: inline-block;
+				width: 100px;
+				height: 70px;
+				margin: 0 10px;
+				background-color: #0000FF;
+				vertical-align: middle;
+			}
+
+			ul li span:nth-child(4) {
+				display: inline-block;
+				margin: 0 100px;
+			}
+
+			ul li span:nth-child(5) {
+				display: inline-block;
+				width: 120px;
+				height: 30px;
+				background-color: #fff;
+				border: 1px solid #969696;
+			}
+
+			ul li span:nth-child(5) button {
+				border: none;
+				height: 100%;
+				width: 30px;
+				border-right: 1px solid #969696;
+			}
+
+			ul li span:nth-child(5) button:last-child {
+				float: right;
+				border-right: 0;
+				border-left: 1px solid #969696;
+			}
+
+			ul li span:last-child {
+				display: inline-block;
+				float: right;
+				height: 70px;
+				padding-top: 12px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w">
+			<ul>
+				<li>
+					<input type="checkbox" />
+					<span>图片</span><i>白岩松：白说1</i>
+					<span>&yen;21.90</span>
+					<span><button type="button">-</button><button type="button">+</button></span>
+					<span><a href="#">移入收藏夹</a><br><a href="#">删除</a></span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>图片</span><i>白岩松：白说2</i>
+					<span>&yen;21.90</span>
+					<span><button type="button">-</button><button type="button">+</button></span>
+					<span><a href="#">移入收藏夹</a><br><a href="#">删除</a></span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>图片</span><i>白岩松：白说3</i>
+					<span>&yen;21.90</span>
+					<span><button type="button">-</button><button type="button">+</button></span>
+					<span><a href="#">移入收藏夹</a><br><a href="#">删除</a></span>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<span>图片</span><i>白岩松：白说4</i>
+					<span>&yen;21.90</span>
+					<span><button type="button">-</button><button type="button">+</button></span>
+					<span><a href="#">移入收藏夹</a><br><a href="javascript:;">删除</a></span>
+				</li>
+			</ul>
+		</div>
+
+
+		<script type="text/javascript">
+			var ul = document.querySelector('ul');
+			var lis = document.querySelectorAll('li');
+			for(var i=0;i<lis.length;i++){
+				lis[i].addEventListener('click',function(e){
+					ul.removeChild(e.target.parentNode.parentNode);
+					console.log(e.target.parentNode.parentNode);
+				} );
+			}
+		</script>
+	</body>
+</html>

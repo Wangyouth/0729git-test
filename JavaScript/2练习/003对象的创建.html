@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>对象的创建</title>
+		<script type="text/javascript">
+			// 方法一  var obj= {}
+			// var kekeDog= {
+			// 	dogName: 'keke',
+			// 	dogAge: 5,
+			// 	dogSex: '雄性',
+			// 	say: function(){
+			// 		console.log('汪汪汪');
+			// 	}
+			// }
+			// console.log(kekeDog.dogName);
+			// kekeDog.say();
+			
+			
+			// 方法二  var obj = new Object();
+					// obj.nane='jack';
+			// var obj = new Object();
+			// obj.nane='jack';
+			// obj.age= 19;
+			// obj.say = function(){
+			// 	console.log('hello`````');
+			// }
+			
+			// console.log(obj.age);
+			// console.log(obj.nane);
+			// obj.say();
+			
+			var computer = {
+				color: 'black',
+				width: '2kg',
+				brand: '联想',
+				moves: function (){
+					document.write('放电影');
+				},
+				play: function(){
+					document.write('玩游戏');
+				},
+				writeProgram: function (){
+					document.write('hello!  world ');
+				}
+			}
+			
+			for (var k in computer){
+				document.write(computer[k]);
+			}
+			
+			computer.play();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>判断闰年</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var year = prompt('请输入索要查询的年份：');
+			if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+				alert(year + '是闰年')
+			} else {
+				alert(year + '不是闰年')
+			}
+		</script>
+	</body>
+</html>

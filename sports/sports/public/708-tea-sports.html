@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+        }
+
+        #sports-header {
+            width: 100%;
+            height: 50px;
+            background: #537bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sports-main {
+            margin-top: 50px;
+            height: calc(100vh - 50px);
+        }
+
+        #sports-main ul {
+            background: white;
+        }
+
+        #sports-main ul li {
+            display: flex;
+            border-bottom: 1px #f7f7f7 solid;
+            margin: 0 18px;
+            padding: 20px 0;
+        }
+
+        #sports-main .sports-list-text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type {
+            font-size: 14px;
+            color: #828c9b;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type span {
+            margin-right: 10px;
+        }
+
+        #sports-main .sports-list-img {
+            width: 130px;
+            margin-left: 20px;
+        }
+
+        #sports-main .sports-list-img img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #loadingDown {
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            z-index: -1;
+            text-align: center;
+        }
+
+        #loadingUp {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #loading {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/better-scroll.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="sports-header">
+        腾讯 | 体育
+    </header>
+    <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+            </ul>
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+    <script id="tpl-sportsList" type="text/html">
+        {{each data}}
+        <li>
+            <div class="sports-list-text">
+                <p>
+                   {{$value.title}}
+                </p>
+                <p>
+                    <span>{{$value.comment}}</span>
+                </p>
+            </div>
+            <div class="sports-list-img">
+                <img src="{{$value.img}}" alt="">
+            </div>
+        </li>
+        {{/each}}
+    </script>
+    <script>
+        var sportsList = document.querySelector('.sports-list');
+        var sportsMain = document.querySelector('#sports-main');
+        var loadingDown = document.querySelector('#loadingDown');
+        var loadingUp = document.querySelector('#loadingUp');
+        var loading = document.querySelector('#loading');
+        var now = 0;
+        initList();
+        function initList() {
+            loading.innerHTML = "loading.....";
+            axios.post('/list', {
+                page: 0,
+                count: 10
+            }).then((res) => {
+                if (res.data.errcode == 0) {
+                    loading.innerHTML = ''
+                    sportsList.innerHTML = template('tpl-sportsList', res.data);
+                    initBetterScroll();
+                }
+            })
+        }
+        function initBetterScroll() {
+            let bs = BetterScroll.createBScroll(sportsMain, {
+                pullDownRefresh: {
+                    threshold: 30
+                },
+                pullUpLoad: {
+                    threshold: -10
+                }
+            })
+            bs.on('scrollStart', () => {
+                loadingDown.innerHTML = "下拉刷新"
+                loadingUp.innerHTML = "上拉加载"
+            });
+            bs.on('pullingDown', () => {
+                loadingDown.innerHTML = "loading....."
+
+
+                axios.post('/list', {
+                    page: 0,
+                    count: 10
+                }).then((res) => {
+                    if (res.data.errcode == 0) {
+                        setTimeout(() => {
+                            sportsList.innerHTML = template('tpl-sportsList', res.data);
+                            loadingDown.innerHTML = "刷新成功"
+                            bs.finishPullDown();
+                            bs.refresh();
+                            now = 0
+                        }, 2000)
+                    }
+                })
+
+                // console.log(1111);
+
+            });
+            bs.on('pullingUp', () => {
+                loadingUp.innerHTML = "loading....."
+                axios.post('/list', {
+                    page: ++now,
+                    count: 10
+                }).then((res) => {
+                    if (res.data.errcode == 0) {
+                        setTimeout(() => {
+                            sportsList.innerHTML += template('tpl-sportsList', res.data);
+                            if (res.data.list.length) {
+                                loadingUp.innerHTML = "加载成功"
+                            } else {
+                                loadingUp.innerHTML = "已经没有更多的数据了"
+                            }
+                            bs.finishPullUp();
+                            bs.refresh();
+                        }, 2000)
+                    }
+                })
+                // console.log(2222)
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>

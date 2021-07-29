@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>左右缓动测试</title>
+		<style type="text/css">
+			.box {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background-color: #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<button type="button" class="btn500">到500</button>
+		<button type="button" class="btn1000">到1000</button>
+		<button type="button" class="btn0">到0起点</button>
+		<div class="box"></div>
+		<script type="text/javascript">
+			var box = document.querySelector('.box');
+			var btn500 = document.querySelector('.btn500');
+			var btn1000 = document.querySelector('.btn1000');
+			var btn0 = document.querySelector('.btn0');
+
+			function animation(obj, traget, callback) {
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function() {
+					var step = (traget - obj.offsetLeft) / 10;
+					step = step > 0 ? Math.ceil(step) : Math.floor(step);
+					if (obj.offsetLeft == traget) {
+						clearInterval(obj.timer);
+						if (callback) {
+							callback();
+						}
+					}
+					obj.style.left = obj.offsetLeft + step + 'px';
+				}, 15);
+			}
+
+			btn500.onclick = function() {
+				animation(box, 500, function() {
+					box.style.backgroundColor = '#0099cc';
+				});
+			};
+			btn1000.onclick = function() {
+				animation(box, 1000, function() {
+					box.style.backgroundColor = '#23cee8';
+				});
+			};
+			btn0.onclick = function() {
+				animation(box, 0, function() {
+					box.style.backgroundColor = 'red';
+				});
+			};
+		</script>
+	</body>
+</html>

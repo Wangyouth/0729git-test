@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隔行换色效果</title>
+    <style>
+        table {
+            margin: 10px auto;
+            /* border: 1px solid black; */
+            text-align: center;
+            border-collapse: collapse;
+            /* border-collapse: separate;    //单元格之间有间距 */
+        }
+
+        table td {
+            width: 150px;
+            border-bottom: 1px solid #969696;
+        }
+
+        thead {
+            background-color: cornflowerblue;
+        }
+
+        .bg {
+            background-color: rgb(237, 100, 100);
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>x姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>居住地</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>刘德华</td>
+                <td>男</td>
+                <td>58</td>
+                <td>中国香港</td>
+            </tr>
+            <tr>
+                <td>周润发</td>
+                <td>男</td>
+                <td>56</td>
+                <td>中国香港</td>
+            </tr>
+            <tr>
+                <td>刘亦菲</td>
+                <td>女</td>
+                <td>33</td>
+                <td>中国</td>
+            </tr>
+            <tr>
+                <td>王宝强</td>
+                <td>男</td>
+                <td>34</td>
+                <td>中国</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var trs = document.querySelector('tbody').querySelectorAll('tr');
+        for (var i = 0; i < trs.length; i++) {
+            trs[i].onmouseover = function () {
+                this.className = 'bg';
+            }
+            trs[i].onmouseout = function () {
+                this.className = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

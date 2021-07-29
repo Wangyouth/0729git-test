@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>echarts22</title>
+		//第一步，引入echarts文件
+		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		//第二部，创建容器盒子
+		<div class="box" style="width: 600px; height: 400px;"></div>
+		<script type="text/javascript">
+		//第三步，初始化echarts对象
+			var mycharts=new echarts.init(document.querySelector('.box') );
+			//第四步，准备配置项
+			var option={
+				xAxis:{
+					type:'category',
+					data:['小明','小红','小王']
+				},
+				yAxis:{
+					type:'value'
+				},
+				series:[
+					{
+						name:'语文',
+						type:'bar',
+						data:[70,80,90]
+					},{
+						name:'数学',
+						type:'bar',
+						data:[70,80,90]
+					}
+				]
+			};
+			//第五步，将配置项设置给charts对象
+			mycharts.setOption(option);
+		</script>
+	</body>
+</html>

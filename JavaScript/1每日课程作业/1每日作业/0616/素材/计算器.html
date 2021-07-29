@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>简易计算器</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+
+	<body>
+
+		<div id="counter">
+			<h2>简易计算器</h2>
+			<div id="counter_content">
+				<h3><input id="input1" type="text" value="" /></h3>
+				<ul>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>+</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>-</li>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>*</li>
+					<li>0</li>
+					<li>C</li>
+					<li>=</li>
+					<li>/</li>
+				</ul>
+			</div>
+			<div id="bg"></div>
+		</div>
+
+		<script type="text/javascript">
+			var input = document.querySelector('input');
+			var lis = document.querySelectorAll('li');
+			
+			for (var i = 0; i < lis.length; i++) {
+				// console.log(lis[i].innerHTML);
+				lis[i].addEventListener('click', function() {
+					if(this.innerHTML=='='){
+						// console.log(input.value);
+						input.value =eval(input.value);
+					}else if(this.innerHTML=='C'){
+						// console.log(input.value);
+						input.value ='';
+					}else{
+						input.value += this.innerHTML;
+					}
+				});
+			}
+			
+		</script>
+	</body>
+</html>

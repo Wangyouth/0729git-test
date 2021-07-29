@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>面向对象实现选项卡</title>
+		<style type="text/css">
+			.box {
+				width: 250px;
+				border: 1px solid #000000;
+				padding: 30px;
+			}
+
+			.box button {
+				width: 80px;
+				border-top: 4px solid #969696;
+				border-left: 4px solid #969696;
+				border-right: 4px solid #333333;
+				border-bottom: 4px solid #333333;
+				background-color: white;
+				font-weight: 700;
+			}
+
+			.box .nav {
+				width: 250px;
+				height: 200px;
+				margin-top: 2px;
+				background-color: #CCCCCC;
+				font-size: 30px;
+			}
+
+			.box .yellow {
+				background-color: #FFFF00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<button type="button" class="yellow">导航一</button>
+			<button type="button">导航二</button>
+			<button type="button">导航三</button>
+			<div class="nav"></div>
+		</div>
+
+
+		<script type="text/javascript">
+			var btns = document.querySelectorAll('button');
+			var nav = document.querySelector('.nav');
+			nav.innerHTML = '导航一1111111111111';
+			
+			function changediv(values){
+				var o={
+					values:values,
+					show:function(){
+						return this.values;
+					}
+				}
+				return o;
+			}
+			
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].setAttribute('index',i);
+				btns[i].addEventListener('click', function() {
+					//导航选项卡背景色变换
+					for (var i = 0; i < btns.length; i++) {
+						btns[i].style.backgroundColor = 'white';
+					}
+					this.style.backgroundColor = '#FFFF00';
+
+					//内容栏显示对应的内容
+					var index=this.getAttribute('index');
+					if (index == 0) {
+						var div1=changediv('导航一1111111111111');
+						nav.innerHTML = div1.show();
+					} else if (index == 1) {
+						var div2=changediv('导航二2222222222222');
+						nav.innerHTML = div2.show();
+					} else if (index == 2) {
+						var div3=changediv('导航三3333333333333');
+						nav.innerHTML = div3.show();
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

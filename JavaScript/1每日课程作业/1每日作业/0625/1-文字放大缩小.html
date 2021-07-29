@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文字放大缩小</title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<button type="button" class="small">-</button>
+		<button type="button" class="big">+</button>
+		<p style="font-size: 16px;">《花千骨》是由慈文传媒集团制作并发行，林玉芬、高林豹、梁胜权联合执导，霍建华、赵丽颖领衔主演，蒋欣、杨烁特别出演，张丹峰、马可、李纯、鲍天琦、安悦溪、徐海乔等主演的古装玄幻仙侠剧。该剧改编自fresh果果同名小说，讲述少女花千骨与长留上仙白子画之间关于责任、成长、取舍的纯爱虐恋[1]。该剧于2014年5月6日开机，9月15日杀青，8月12日发布中文及英文版的预告片[2]。该剧于2015年6月9日起每周二、周三晚10点在湖南卫视的钻石独播剧场播出。[3]2015年7月5日起，该剧播放时间已经改为每周日、周一晚10点。当天零点在爱奇艺同步更新。[4]2015年11月25日广东卫视活力剧场二轮强势播出![5]
+		</p>
+	</body>
+	<script type="text/javascript">
+		var small = document.querySelector('.small');
+		var big = document.querySelector('.big');
+		var p = document.querySelector('p');
+
+		small.addEventListener('click', function() {
+			p.style.fontSize=parseInt(p.style.fontSize)-2+'px';
+		});
+		big.addEventListener('click', function() {
+			p.style.fontSize=parseInt(p.style.fontSize)+2+'px';
+		});
+	</script>
+</html>

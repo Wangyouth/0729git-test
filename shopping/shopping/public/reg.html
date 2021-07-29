@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>会员注册</title>
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/login.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/login_reg.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+</head>
+
+<body>
+    <div class="page">
+        <!-- 顶部开始-->
+        <div class="sub-header">
+            <div class="back"></div>
+            <div class="title">会员注册</div>
+        </div>
+        <!-- 顶部结束-->
+        <div class="main">
+            <div class="inputs">
+                <input type="text" name="" id="1" placeholder="验证码">
+                <div class="vcode-img">
+                    <img src="http://vueshop.glbuys.com/api/vcode/chkcode?token=1ec949a15fb709370f" alt="">
+                </div>
+            </div>
+            <div class="cellphone-wrap">
+                <div class="cellphone">
+                    <input type="tel" name="" id="2" placeholder="请输入手机号">
+                </div>
+                <div class="code-btn">获取短信验证码</div>
+            </div>
+            <div class="code-wrap">
+                <input type="text" name="" id="3" placeholder='请输入短信验证码'>
+            </div>
+        </div>
+        <div class="password-wrap">
+            <div class="password">
+                <input type="password" name="" id="4" placeholder='密码'>
+            </div>
+            <div class="switch-wrap">
+                <div class="van-switch">
+                    <div class="van-switch__node"></div>
+                </div>
+            </div>
+        </div>
+        <div class="sure-btn-reg">注册</div>
+        <!-- 未输入电话号-或者-密码时的提示框--开始 -->
+        <div class="van-toast"></div>
+        <!-- 未输入电话号-或者-密码时的提示框--结束 -->
+    </div>
+
+
+</body>
+
+</html>

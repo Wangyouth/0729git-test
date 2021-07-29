@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选反选</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //全选按钮被选中
+            $('#all').click(function () {
+                var checkedValue = $(this).prop('checked');
+                $('tbody input').prop('checked', checkedValue);
+            });
+
+            //单选按钮被选中
+            $('tbody input').click(function () {
+                var checkedAll = $('tbody input').length;
+                var checkedSelect = $('tbody input:checked').length;
+                // if (checkedAll == checkedSelect) {
+                //     $('#all').prop('checked', true)
+                // } else {
+                //     $('#all').prop('checked', false)
+                // }
+
+                //上面的if判断可以简化
+                $('#all').prop('checked', checkedAll == checkedSelect);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="all">全选</th>
+                <th>科目</th>
+                <th>代号</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" id=""></td>
+                <td>css</td>
+                <td>11111</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id=""></td>
+                <td>css</td>
+                <td>2222222222</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id=""></td>
+                <td>css</td>
+                <td>333333</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id=""></td>
+                <td>css</td>
+                <td>44444444</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

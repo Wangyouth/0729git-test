@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="news">
+			<h2>新闻列表</h2>
+			<ul id="list"></ul>
+		</div>
+		<script src="js/ajaxnew.js"></script>
+		<script>
+			var olist=document.getElementById('list');
+			var alis='';//li的集合
+			ajax('get','data/news.json',function(data){
+				var odata=JSON.parse(data);
+				if(odata.status==0){
+					for(var i=0;i<odata.list.length;i++){
+						alis+='<li><a href="#">'+odata.list[i]+'</a></li>';
+					}
+					olist.innerHTML=alis;
+				}else{
+					window.location.href='error.html';
+				}
+			});
+		</script>
+	</body>
+</html>

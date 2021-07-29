@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例</title>
+</head>
+
+<body>
+    <h3 id="header">点击隐藏或者显示下面的选项</h3>
+    <ul id="list">
+        <li>第一行</li>
+        <li>第二行</li>
+        <li>第三行</li>
+    </ul>
+    <p>最后一行最后一行</p>
+    <script type="text/javascript">
+        var oheader = document.getElementById('header');
+        var olist = document.getElementById('list');
+        oheader.onclick = ontoggle;
+        var off = true;
+
+        function ontoggle() {
+            if (off) {
+                olist.style.display = 'block';
+            } else {
+                olist.style.display = 'none';
+            }
+            off = !off;
+        }
+    </script>
+</body>
+
+</html>

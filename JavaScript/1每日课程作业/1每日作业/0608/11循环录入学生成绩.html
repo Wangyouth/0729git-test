@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>循环录入学生成绩</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var p = prompt('请输入班级总人数：');
+			var arr = [];
+			var sum80 = 0;
+			for (var i = 0; i <= parseInt(p - 1); i++) {
+				arr[i] = prompt('请输入第' + parseInt(i + 1) + '个同学的成绩,共' + p + '个同学');
+				if (arr[i] < 0) {
+					document.write('学生成绩不能是负数，无法完成统计！<br />');
+					break;
+				} else if (arr[i] >= 80) {
+					sum80++;
+				} 
+			}
+
+			// for (var i = 0; i <= arr.length-1; i++) {
+			// 	if (arr[i] >= 80) {
+			// 		sum80++;
+			// 	}
+			// 	document.write('成绩：'+arr[i] + '<br />');
+			// }
+			document.write('学生成绩80分以上的人有：' + sum80 + '个');
+		</script>
+	</body>
+</html>

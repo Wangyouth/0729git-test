@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件案例</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 100px;
+            margin: 10px auto;
+        }
+
+        .inputfirst {
+            color: #999;
+        }
+
+        .infocus {
+            color: black;
+            outline: none;
+        }
+
+        .inblur {
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 文本框默认值，聚焦时候隐藏value值，离开后显示 -->
+    <div class="box">
+        <input type="text" value="请输入内容" class="inputfirst">
+    </div>
+
+    <script>
+        var inp = document.querySelector('.inputfirst');
+        inp.onfocus = function () {
+            inp.className = 'inputfirst infocus';
+            inp.value = '';
+        }
+        inp.onblur = function () {
+            inp.className = 'inputfirst inblur'
+            inp.value = '请输入内容';
+        }
+    </script>
+
+</body>
+
+</html>

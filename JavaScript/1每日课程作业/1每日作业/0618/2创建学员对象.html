@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建学员对象</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//使用  构造函数+prototype  实现
+			function Student(name, age) {
+				this.name = name;
+				this.age = age;
+			}
+
+			Student.prototype.show = function() {
+				console.log(this.name + '--' + this.age);
+			};
+
+			var stu1 = new Student('张小萌', 16);
+			stu1.show();
+			var stu2 = new Student('王思雨', 20);
+			stu2.show();
+		</script>
+	</body>
+</html>

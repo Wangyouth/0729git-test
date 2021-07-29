@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Ajax创建</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		//第一步.创建ajax
+		var oajax;
+		if (window.XMLHttpRequest) {
+			var oajax = new XMLHttpRequest();
+		} else {
+			var oajax = new ActiveXObject('Microsoft.XMLHTT');
+		}
+		//第二步.连接到服务器
+		oajax.open('get', 'data/aa.txt');
+		//第三步
+		oajax.send();
+		//第四步。接收返回值
+		oajax.onreadystatechange = function () {
+			if (oajax.readyState == 4 && oajax.status == 200) {
+				console.log(oajax.readyState);
+				console.log(oajax.status);
+				console.log(oajax.responseText);
+			} else {
+				console.log('错误，状态码为：' + oajax.readyState + '-----status是：' + oajax.status);
+			}
+		};
+
+
+	</script>
+</body>
+
+</html>

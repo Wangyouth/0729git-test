@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>购物车</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/car.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/car.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+</head>
+
+<body>
+    <div class="cart-main">
+        <!-- 顶部开始-->
+        <div class="sub-header">
+            <div class="back"></div>
+            <div class="title">购物车</div>
+        </div>
+        <!-- 顶部结束-->
+
+        <!-- 商品列表---开始 -->
+        <div class="goodslist">
+            <!-- <div class="cart-list">
+                <div class="select-btn active"></div>
+                <div class="image-wrap">
+                    <div class="image"><img src="" alt=""></div>
+                    <div class="del">删除</div>
+                </div>
+                <div class="goods-wrap">
+                    <div class="goods-title">商品介绍介绍介绍</div>
+                    <div class="goods-attr">
+                        <span>颜色:灰色</span>
+                        <span>尺码:78</span>
+                    </div>
+                    <div class="buy-wrap">
+                        <div class="price">￥20.9</div>
+                        <div class="amount-input-wrap">
+                            <div class="btn del">-</div>
+                            <div class="amount-input">
+                                <input type="text" value="1">
+                            </div>
+                            <div class="btn inc">+</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <script type="text/html" id="goodslist">
+                {{each}} 
+                <div class="cart-list">
+                    <div class="select-btn active"></div>
+                    <div class="image-wrap">
+                        <div class="image"><img src="{{$value.imgsrc}}" alt=""></div>
+                        <div class="del">删除</div>
+                    </div>
+                    <div class="goods-wrap">
+                        <div class="goods-title">{{$value.title}}</div>
+                        <div class="goods-attr">
+                            <span>颜色:{{$value.color}}</span>
+                            <span>尺码:{{$value.size}}</span>
+                        </div>
+                        <div class="buy-wrap">
+                            <div class="price">￥{{$value.price}}</div>
+                            <div class="amount-input-wrap">
+                                <div class="btn del">-</div>
+                                <div class="amount-input">
+                                    <input type="text" value="{{$value.amount}}">
+                                </div>
+                                <div class="btn inc">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </script>
+        </div>
+        <!-- 商品列表---结束 -->
+
+
+        <!-- 结算--开始-->
+        <div class="orderend-wrap">
+            <div class="select-area">
+                <div class="select-wrap">
+                    <div class="select-btn"></div>
+                    <div class="select-text">全选</div>
+                </div>
+                <div class="total">
+                    运费:<span>￥0</span>合计:<span>￥0</span>
+                </div>
+            </div>
+            <div class="orderend-btn">去结算</div>
+        </div>
+        <!-- 结算--结束-->
+    </div>
+    <!-- 底部开始-->
+    <div class="bottom-nav">
+        <ul class="home">
+            <li></li>
+            <li>首页</li>
+        </ul>
+        <ul class="car">
+            <li></li>
+            <li>购物车</li>
+            <li class="spot"></li>
+        </ul>
+        <ul class="my">
+            <li></li>
+            <li>我的</li>
+        </ul>
+    </div>
+    <!-- 底部结束-->
+
+
+</body>
+
+</html>

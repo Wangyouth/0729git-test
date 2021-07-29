@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第一个higcharts</title>
+		<script src="js/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box" style="width: 600px;height: 400px;"></div>
+
+		<script type="text/javascript">
+			//t图标配置
+			var options = {
+				chart: {
+					type: 'bar' //条形图
+				},
+				credits: {
+					enabled: false//是保存水印
+				},
+				title: {
+					text: '我的第一个图表'//图表的标题
+				},
+				xAxis: {
+					categories: ['苹果', '香蕉', '橙子']
+				},
+				yAxis: {
+					title: {
+						text: '吃水果的个数'
+					}
+				},
+				//设置参数
+				series: [{
+					name: '小明',
+					data: [1, 0, 4]
+				},{
+					name: '小红',
+					data: [5, 7, 3]
+				}]
+			};
+
+			//图表初始化的参数,让图标显示
+			var chart = Highcharts.chart('box', options);
+		</script>
+	</body>
+</html>

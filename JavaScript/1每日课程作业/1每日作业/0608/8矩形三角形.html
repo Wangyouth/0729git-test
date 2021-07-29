@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>矩形三角形</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			document.write('矩形<br />');
+			for (var i = 0; i< 5; i++) {
+				for (var j = 0; j< 5; j++) {
+					document.write('*');
+				}
+				document.write('<br />');
+			}
+			
+			
+			document.write('<br />');
+			document.write('等腰三角形<br />');
+			var k = 12;
+			for (var i = 1; i<=k; i++) {
+				for (var j = 1; j<= k-i; j++) {
+					document.write('&nbsp;');
+				}
+				for (var j = 1; j<= 2*i-1; j++) {
+					document.write('*');
+				}
+				document.write('<br />');
+			}
+		</script>
+	</body>
+</html>

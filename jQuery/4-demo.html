@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        .box1 {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        .box1son,
+        .box2son {
+            display: none;
+            width: 100px;
+            height: 100px;
+            background-color: #00ff00;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#show').click(function () {
+                console.log('SHOW')
+                $('.box1son').show()
+            })
+            $('#hide').click(function () {
+                $('.box1son').hide()
+            })
+            $('#toggle').click(function () {
+                $('.box1son').toggle()
+            })
+
+            ///fidein  fideout
+            $('#fadein').click(function () {
+                $('.box2son').fadeIn()
+            })
+            $('#fadeout').click(function () {
+                $('.box2son').fadeOut()
+            })
+            $('#fadetoggle').click(function () {
+                $('.box2son').fadeToggle()
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <span class="box1">
+        <button id='show'>show</button>
+        <button id='hide'>hide</button>
+        <button id='toggle'>toggle</button>
+        <div class="box1son"></div>
+    </span>
+    <span class="box1">
+        <button id='fadein'>fadein</button>
+        <button id='fadeout'>fadeout</button>
+        <button id='fadetoggle'>toggle</button>
+        <div class="box2son"></div>
+    </span>
+
+</body>
+
+</html>

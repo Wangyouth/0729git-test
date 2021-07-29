@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+        }
+
+        #sports-header {
+            width: 100%;
+            height: 50px;
+            background: #537bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sports-main {
+            margin-top: 50px;
+            height: calc(100vh - 50px);
+        }
+
+        #sports-main ul {
+            background: white;
+        }
+
+        #sports-main ul li {
+            display: flex;
+            border-bottom: 1px #f7f7f7 solid;
+            margin: 0 18px;
+            padding: 20px 0;
+        }
+
+        #sports-main .sports-list- text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type {
+            font-size: 14px;
+            color: #828c9b;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type span {
+            margin-right: 10px;
+        }
+
+        #sports-main .sports-list- img {
+            width: 130px;
+            margin-left: 20px;
+        }
+
+        #sports-main .sports-list-img img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #loadingDown {
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            z-index: -1;
+            text-align: center;
+        }
+
+        #loadingUp {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #loading {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/better-scroll.js"></script>
+</head>
+
+<body>
+    <header id="sports-header">
+        腾讯 | 体育
+    </header>
+    <!-- 下拉刷新的区域 -->
+    <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!--<li>
+                    <div class="sports-list-text">
+                        <p>
+                            詹姆斯一分半钟拿下6分1盖帽，这就是联盟第一人的水准
+                        </p>
+                        <p>
+                            <span>50评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/a.jpg" alt="">
+                    </div>
+                </li>
+                 <li>
+                    <div class="sports-list-text">
+                        <p>
+                            魔兽18年为何会被⻩蜂纵走，管理层有心其影响年轻球员
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/b.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="sports-list-text">
+                        <p>
+                            乔治未来惹争议，两大名宿建议快船别急，詹姆斯热火没夺冠！
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="/images/c.jpg" alt="">
+                    </div>
+                </li> -->
+            </ul>
+            <!-- 上拉的区域 -->
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+
+    <!--正常使用模板引擎将数据写到html页面中 -->
+    <script id="tpl-sportsList" type="text/html">
+        {{each list}}
+        <li>
+            <div class="sports-list-text">
+                <p>
+                   {{$value.title}}
+                </p>
+                <p>
+                    <span>{{$value.comment}}</span>
+                </p>
+            </div>
+            <div class="sports-list-img">
+                <img src="{{$value.img}}" alt="">
+            </div>
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- ajax获取数据,使用引擎模板输出到页面 -->
+    <!-- <script>
+        // 初始化渲染列表
+        var sportsList = document.querySelector('.sports-list');
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // console.log(xhr.responseText)
+                var data = JSON.parse(xhr.responseText);
+                if (data.errcode == 0) {
+                    // 用模版引擎，去得到渲染后的字符串
+                    sportsList.innerHTML = template('tpl-sportsList', data)
+                }
+            }
+        }
+        // 按照接口文档的，请求方式post
+        xhr.open('POST', '/list', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        // 按照接口文档，去校验器请求类型
+        xhr.send(JSON.stringify({ 'page': 0, 'count': 10 }));
+    </script> -->
+
+    <!-- axios获取数据练习 -->
+    <!-- <script>
+        // ES6的箭头函数
+        // var fn1=function(a,b){
+        //     return a+b
+        // }
+        // fn1(10,4)
+        // ES6的箭头函数，将原本函数的function关键字删除掉，函数名也删除，使用=>连接参数列表和函数体
+        // var fn1=(a,b)=>{
+        //     return a+b
+        // }
+        // fn1(10,4)
+
+        // 单个参数
+        // var fn2=function(a){}
+        // var fn2=a=>{}
+        // 多个参数
+        // var fn3=function(gn,ff){}
+        // var fn3=(gn,ff)=>{}
+
+
+
+        axios的基本操作
+        axios.get('/list?username=apap&age=20').then((res) => {
+            console.log(res)
+        })
+
+        axios.get('/list', {
+            params: {
+                username: "aiai",
+                age: 30
+            }
+        }).then((res) => {
+            console.log(res)
+        })
+
+        axios.post('/list2', {
+            username: "aiai",
+            age: 30
+        }).then((res) => {
+            console.log(res)
+        })
+
+        axios.post('/list2', 'username=aoao&age=30').then((res) => {
+            console.log(res)
+        })
+    </script> -->
+
+    <!-- axios获取数据，使用引擎模板输出到页面，实现下拉，上拉效果 -->
+    <script>
+
+    </script>
+
+</body>
+
+</html>

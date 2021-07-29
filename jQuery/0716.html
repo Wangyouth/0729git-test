@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.3.1.js"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#box1,
+			#box2 {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				overflow: hidden;
+				float: left;
+				margin-right: 20px;
+			}
+
+			#box1 p,
+			#box2 p {
+				width: 100px;
+				height: 100px;
+				background-color: yellow;
+				margin: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="btn">
+			鼠标shijian
+		</div>
+		<div id="box1">
+			mouseover父级
+			<p>1111</p>
+		</div>
+		<div id="box2">
+			mouseenter父级
+			<p>2222</p>
+		</div>
+		<script>
+			$(function() {
+				var obox1 = document.getElementById('box1');
+				var p1 = obox1.getElementsByTagName('p')[0];
+				var obox2 = document.getElementById('box2');
+				var p2 = obox2.getElementsByTagName('p')[0];
+				$('#box1').mouseover(function() {
+					$(p1).text(parseInt($(p1).text()) + 1);
+				});
+				$('#box2').mouseenter(function() {
+					$(p2).text(parseInt($(p2).text()) + 1);
+				});
+			});
+			$(function() {
+				$(document).keydown(function() {
+					console.log('按下');
+				});
+				$(document).keypress(function() {
+					console.log('过程');
+				});
+				$(document).keyup(function() {
+					console.log('抬起');
+				});
+			});
+
+			// $('.btn').mouseover(function(){
+			// 	$(this).text('鼠标移入事件')
+			// })
+			// $('.btn').mouseout(function(){
+			// 	$(this).text('鼠标移出事件')
+			// })
+		</script>
+	</body>
+</html>

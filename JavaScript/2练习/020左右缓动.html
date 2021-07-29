@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>左右缓动</title>
+		<script src="020左右缓动.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.box {
+				position:fixed;
+				top: 10px;
+				right: 10px;
+				/* border: 1px solid #000000; */
+			}
+			.box span {
+				display: inline-block;
+				background-color: #FF0000;
+				z-index: 1;
+			}
+			.none{
+				position: absolute;
+				top: 0;
+				left: 32px;
+				background-color: #636362;
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span>出来</span>
+			<div class="none">隐藏缓动出现</div>
+		</div>
+		
+		<script type="text/javascript">
+			var box =document.querySelector('.box');
+			var none =document.querySelector('.none');
+			box.addEventListener('mouseenter',function(){
+				animation(none,-200,function(){
+					box.children[0].innerHTML='回去';
+				});
+			} );
+			box.addEventListener('mouseleave',function(){
+				animation(none,32,function(){
+					box.children[0].innerHTML='出来';
+				});
+			} );
+		</script>
+	</body>
+</html>

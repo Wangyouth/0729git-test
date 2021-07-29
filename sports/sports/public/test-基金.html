@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios基金信息</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        #sports-header {
+            width: 100%;
+            height: 50px;
+            background: #537bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sports-main {
+            margin-top: 50px;
+            height: calc(100vh - 50px);
+        }
+    </style>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/better-scroll.js"></script>
+</head>
+
+<body>
+    <header id="sports-header">
+        基金信息
+    </header>
+    <!-- 下拉刷新的区域 -->
+    <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!-- 模板引擎 -->
+            </ul>
+            <!-- 上拉的区域 -->
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+
+    <!-- 模板引擎 -->
+    <script type="text/html" id="tpl-sportsList">
+                <p>
+                   状态： {{charge}}
+                </p>
+                <p>
+                   基金代号： {{code}}
+                </p>
+                <p>
+                   错误原因： {{msg}}
+                </p>
+                <p>
+                    请求码： {{requestId}}
+                </p>
+    </script>
+
+    <!-- 使用axios请求数据，实现上拉，下拉刷新 -->
+    <script>
+        var sportsList = document.querySelector('.sports-list')
+        axios.post('/book', {
+            appkey: 'appkey'
+        }).then(function (res) {
+            console.log(res.data)
+
+            sportsList.innerHTML = template('tpl-sportsList', res.data.list);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ch-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>拖拽效果</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		a {
+			text-decoration: none;
+		}
+		.login {
+			display: none;
+			position: relative;
+			top: 100px;
+			left: 50%;
+			transform: translate(-50%);
+			width: 500px;
+			height: 260px;
+			border: 1px solid #969696;
+		}
+
+		.login_close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			border: 1px solid black;
+			color: black;
+		}
+
+		.login .login_hider {
+			width: 100%;
+			height: 50px;
+			background-color: darkkhaki;
+			font-size: 30px;
+			line-height: 50px;
+			font-weight: 700;
+			text-align: center;
+			cursor: move;
+		}
+
+		.login_name,
+		.login_pwd,
+		.login_btn {
+			margin: 20px auto;
+			text-align: center;
+		}
+
+		.login_name span,
+		.login_pwd span {
+			display: inline-block;
+			width: 90px;
+			text-align: right;
+		}
+
+		.login_name input,
+		.login_pwd input {
+			width: 300px;
+			height: 35px;
+			border: 1px solid black;
+			padding-left: 10px;
+		}
+
+		.login_btn {
+			width: 150px;
+			height: 35px;
+			line-height: 35px;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div><a href="javascript:;" class="show">
+			<h3>点击登录</h3>
+		</a></div>
+	<div class="login">
+		<div>
+			<a href="javascript:;" class="login_close">关闭</a>
+		</div>
+		<div class="login_hider">
+			会员登录
+		</div>
+		<div class="login_name"><span>用户名：</span><input type="text" placeholder="请输入用户名"></div>
+		<div class="login_pwd"><span>登录密码：</span><input type="text" placeholder="请输入密码"></div>
+		<div class="login_btn">登录</div>
+	</div>
+	<script>
+		var show = document.querySelector('.show');
+		var close = document.querySelector('.login_close');
+		var login = document.querySelector('.login');
+		var loginhider = document.querySelector('.login_hider');
+
+		//点击显示登录框
+		show.addEventListener('click', function () {
+			login.style.display = 'block';
+		});
+
+		//点击退出登录框隐藏 
+		close.addEventListener('click', function () {
+			login.style.display = 'none';
+		});
+
+		//点击头部后跟随鼠标移动
+		loginhider.addEventListener('mousedown', function (e) {
+			var x = e.pageX - login.offsetLeft;
+			var y = e.pageY - login.offsetTop;
+			//跟随鼠标移动
+			document.addEventListener('mousemove', move);
+			function move(e) {
+				login.style.left = e.pageX - x + 'px';
+				login.style.top = e.pageY - y + 'px';
+			}
+			//鼠标弹起停止移动
+			document.addEventListener('mouseup', function () {
+				document.removeEventListener('mousemove', move);
+			});
+		});
+	</script>
+</body>
+
+</html>

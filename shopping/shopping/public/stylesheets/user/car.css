@@ -1,0 +1,249 @@
+/* 头部common.css */
+
+/* 中间商品列表部分 --开始*/
+.cart-main .goodslist {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.cart-main .cart-list{
+    width: 100%;
+    height: 2.2rem;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 0.1rem;
+}
+.cart-main .cart-list .select-btn {
+    width: .4rem;
+    height: .4rem;
+    border: 1px solid #ccc2c2;
+    border-radius: 100%;
+    margin-left: .2rem;
+    margin-right: .3rem;
+}
+.active {
+    background-image: url('../../images/home/cart/checkmark.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border: 1px solid #fff;
+}
+.cart-main .cart-list .image-wrap {
+    width: 1.2rem;
+    margin-right: .3rem;
+}
+.cart-main .cart-list .image-wrap .image {
+    width: 100%;
+    height: 1.2rem;
+}
+.cart-main .cart-list .image-wrap .image img {
+    width: 100%;
+    height: 100%;
+}
+.cart-main .cart-list .image-wrap .del {
+    width: 100%;
+    text-align: center;
+    font-size: .24rem;
+    color: #b5b5b5;
+    margin-top: .2rem;
+}
+.cart-main .cart-list .goods-wrap {
+    width: 64%;
+    font-size: .24rem;
+}
+.cart-main .cart-list .goods-wrap .goods-title {
+    width: 100%;
+}
+.cart-main .cart-list .goods-wrap .goods-attr {
+    width: 100%;
+    margin-top: .1rem;
+}
+.cart-main .cart-list .goods-wrap .goods-attr span {
+    padding-right: .3rem;
+}
+.cart-main .cart-list .goods-wrap .buy-wrap {
+    width: 100%;
+    height: .8rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.cart-main .cart-list .goods-wrap .buy-wrap .price {
+    font-size: .28rem;
+    color: #cc0004;
+    margin-top: .2rem;
+}
+.cart-main .cart-list .goods-wrap .buy-wrap .amount-input-wrap {
+    width: 2.04rem;
+    height: .5rem;
+    border: 1px solid #000;
+    margin-right: .2rem;
+    border-radius: .08rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.cart-main .cart-list .goods-wrap .buy-wrap .amount-input-wrap .btn {
+    width: .6rem;
+    height: .4rem;
+    font-size: .32rem;
+    text-align: center;
+    line-height: .4rem;
+}
+.cart-main .cart-list .goods-wrap .buy-wrap .amount-input-wrap .amount-input {
+    width: .76rem;
+    height: 100%;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000; 
+}
+.cart-main .cart-list .goods-wrap .buy-wrap .amount-input-wrap .amount-input input{
+    width: 100%;
+    height: 75%;
+    text-align: center;
+}
+
+/* 中间商品列表部分 --结束*/
+
+
+/* 全选--合计--结算 */
+.orderend-wrap{
+  position: fixed;
+  left: 0;
+  bottom: 1.2rem;
+  width: 100%;
+  height: 1.02rem;
+  background-color: #fff;
+  border-top: 1px solid rgb(145, 141, 141);
+  display: flex;
+  justify-content: space-between;
+}
+.orderend-wrap .select-area{
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .2rem;
+}
+.orderend-wrap .select-area .select-wrap{
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.orderend-wrap .select-area .select-btn{
+  width: .44rem;
+  height: .44rem;
+  border:1px solid rgb(141, 138, 138);
+  border-radius: 50%;
+}
+.orderend-wrap .select-area .select-text{
+  font-size: .28rem;
+}
+.orderend-wrap .select-area .total{
+  /* width: 3.6rem; */
+  font-size: .24rem;
+}
+.orderend-wrap .select-area .total span{
+  color: red;
+}
+.orderend-btn{
+  width: 1.88rem;
+  height: 100%;
+  font-size: .36rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #fff;
+  background-color: #bfbfbf;
+}
+.orderend-btn-color{
+  background-color: rgb(204, 0, 4);
+}
+
+
+/*底部三个按钮，car，home,my */
+.bottom-nav {
+  background-color: #fff;
+  width: 100%;
+  height: 1.2rem;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+.bottom-nav .home {
+  width: 1rem;
+}
+.bottom-nav .home li:first-child {
+  width: 0.6rem;
+  margin: 0 auto;
+  height: 0.6rem;
+  background-image: url('../../images/common/home1.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+.bottom-nav .home li:nth-child(2) {
+  font-size: 0.28rem;
+  text-align: center;
+}
+.bottom-nav .car {
+  position: relative;
+  width: 1rem;
+}
+.bottom-nav .car li:first-child {
+  width: 0.6rem;
+  height: 0.6rem;
+  margin: 0 auto;
+  background-image: url('../../images/common/cart2.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.bottom-nav .car li:nth-child(2) {
+  font-size: 0.28rem;
+  text-align: center;
+  color: red;
+}
+.bottom-nav .car .spot {
+    width: .2rem;
+    height: .2rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    background-color: #eb1625;
+    border-radius: 100%;
+}
+.bottom-nav .my {
+  width: 1rem;
+}
+.bottom-nav .my li:first-child {
+  width: 0.6rem;
+  margin: 0 auto;
+  height: 0.6rem;
+  background-image: url('../../images/common/my1.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.bottom-nav .my li:nth-child(2) {
+  font-size: 0.28rem;
+  text-align: center;
+}

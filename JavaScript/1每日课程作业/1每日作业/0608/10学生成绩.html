@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生成绩continue</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var arr = [];
+        for (var i = 0; i < 5; i++) {
+            arr[i] = prompt('请输入' + parseInt(i + 1) + '个学生的成绩');
+        }
+        for (var i = 0; i < 5; i++) {
+            if (arr[i] < 0) {
+                document.write('第' + parseInt(i + 1) + '的同学的成绩有误，强制退出!');
+                continue;
+            } else {
+                document.write('第' + parseInt(i + 1) + '的同学的成绩为:' + arr[i] + '<br />');
+            }
+        }
+    </script>
+</body>
+
+</html>

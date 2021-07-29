@@ -1,0 +1,90 @@
+<script id="oneTidalCurrent3" type="text/html">
+        {{each}}
+        <div class="goods-main">
+            <div class="classify-name color-2">
+                —— {{$value[2].title}} ——
+                
+            </div>
+            <div class="goods-row-1">
+                <div class="goods-column">
+                    <div class="goods-title">
+                        {{$value[2].items[0].title}}
+                    </div>
+                    <div class="goods-tip">精品打折</div>
+                    <div class="goods-price bg-color-0">{{$value[2].items[0].price}}</div>
+                    <div class="goods-image">
+                        <img src={{$value[2].items[0].image}} alt="">
+                    </div>
+                </div>
+                <div class="goods-column">
+                    <div class="goods-list">
+                        <div class="goods-list-title">
+                            {{$value[2].items[1].title}}
+                        </div>
+                        <div class="goods-list-tip">品质精挑</div>
+                        <div class="goods-list-image"><img src={{$value[2].items[1].image}} alt=""></div>
+                    </div>
+                    <div class="goods-list">
+                        <div class="goods-list-title">
+                            {{$value[2].items[2].title}}
+                        </div>
+                        <div class="goods-list-tip">品质精挑</div>
+                        <div class="goods-list-image"><img src={{$value[2].items[2].image}} alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="goods-row-2">
+                <div class="goods-list">
+                    <div class="goods-title">
+                        {{$value[2].items[3].title}}
+                    </div>
+                    <div class="goods-image">
+                        <img src={{$value[2].items[3].image}} alt="">
+                    </div>
+                    <div class="price">{{$value[2].items[3].price}}</div>
+                    <div class="price line">¥576</div>
+                </div>
+                <div class="goods-list">
+                    <div class="goods-title">
+                        {{$value[2].items[4].title}}
+                    </div>
+                    <div class="goods-image">
+                        <img src={{$value[2].items[4].image}} alt="">
+                    </div>
+                    <div class="price">{{$value[2].items[4].price}}</div>
+                    <div class="price line">¥576</div>
+                </div>
+                <div class="goods-list">
+                    <div class="goods-title">
+                        {{$value[2].items[5].title}}
+                    </div>
+                    <div class="goods-image">
+                        <img src={{$value[2].items[5].image}} alt="">
+                    </div>
+                    <div class="price">{{$value[2].items[5].price}}</div>
+                    <div class="price line">¥576</div>
+                </div>
+                <div class="goods-list">
+                    <div class="goods-title">
+                        {{$value[2].items[6].title}}
+                    </div>
+                    <div class="goods-image">
+                        <img src={{$value[2].items[6].image}} alt="">
+                    </div>
+                    <div class="price">{{$value[2].items[6].price}}</div>
+                    <div class="price line">¥576</div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+<script>
+    var goodsMain0 = document.querySelectorAll('.goods-main')[0];
+    var goodsMain1 = document.querySelectorAll('.goods-main')[1];
+    var goodsMain2 = document.querySelectorAll('.goods-main')[2];
+    axios.get('/goods-main').then((res) => {
+        goodsMain0.innerHTML = template('oneTidalCurrent1', res.data)
+        goodsMain1.innerHTML = template('oneTidalCurrent2', res.data)
+        goodsMain2.innerHTML = template('oneTidalCurrent3', res.data)
+    })
+</script>

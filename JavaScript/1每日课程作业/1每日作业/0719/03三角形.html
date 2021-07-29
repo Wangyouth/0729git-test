@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>三角形</title>
+	</head>
+	<body style="background-color: #000000;">
+		<canvas id="ocan" width="500" height="500" style="background-color: #FFFFFF;"></canvas>
+		<script type="text/javascript">
+			var oCan=document.getElementById('ocan');
+			var oc=oCan.getContext('2d');//创建绘图环境
+			
+			//三角形
+			// oc.beginPath();
+			// oc.moveTo(80,80);
+			// oc.lineTo(80,180);
+			// oc.lineTo(150,180);
+			// oc.strokeStyle='blue';
+			// oc.lineWidth='2';
+			// oc.fillStyle='rgba(255,0,0,0.4)';
+			// oc.fill();
+			// oc.closePath();
+			// oc.stroke();
+			
+			// 矩形
+			// oc.beginPath();
+			// oc.rect(100,100,300,100);
+			// oc.lineWidth='2';
+			// oc.fillStyle='rgba(255,0,0,0.3)';
+			// oc.fill();
+			// oc.closePath();
+			// oc.stroke();
+			// oc.clearRect(120,120,100,50);
+			
+			
+			// 圆形
+			// oc.beginPath();
+			// oc.arc(200,200,100,0,Math.PI*2,true);
+			// oc.lineWidth='1';
+			// oc.fillStyle='rgba(255,0,0,0.3)';
+			// oc.fill();
+			// oc.closePath();
+			// oc.stroke();
+			
+			// 圆弧
+			// oc.beginPath();
+			// oc.arc(100,300,50,0,Math.PI*3/2,false);
+			// oc.fill();
+			// oc.closePath();
+			
+			// 渐变
+			oc.linewidth='7';
+			oc.beginPath();
+			oc.moveTo(170,120);
+			var grd=oc.createLinearGradient(0,0,170,0) ;
+			grd .addColorStop( '0' , 'black' );
+			grd.addColorStop( '0.3 ' , ' blue' );
+			grd.addColorStop('0.5 ' , ' pink ' );
+			grd.addColorStop ( '0.8' , ' green' );
+			grd.addColorStop( '1', 'gold ' );
+			oc.strokeStyle=grd;
+			oc.arc( 300,300,50,0,Math.PI*2);
+			oc.stroke( );
+
+			
+		</script>
+	</body>
+</html>

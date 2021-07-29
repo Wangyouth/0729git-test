@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>修改密码</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/my.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/my.js"></script>
+    <script src="javascripts/common/public.js"></script>
+    <style>
+        .main {
+            width: 100%;
+            margin-top: 1.04rem;
+        }
+
+        .main .input-wrap {
+            width: 93%;
+            height: .84rem;
+            display: flex;
+            margin: 0 auto;
+            border: .02rem solid #c5cbcf;
+            border-radius: .1rem;
+            background-color: #fff;
+        }
+
+        .main .input-wrap input {
+            width: 5.3rem;
+            height: .7rem;
+            margin-left: .2rem;
+            font-size: .28rem;
+            margin-top: .08rem;
+        }
+
+        .main .input-wrap .switch-wrap {
+            width: 1.4rem;
+            height: .7rem;
+        }
+
+        .main .input-wrap .switch-wrap .van-switch {
+            width: 1.24rem;
+            height: .64rem;
+            margin-top: .08rem;
+            border: .02rem solid #c5cbcf;
+            border-radius: 1rem;
+            background-color: #fff;
+            transition: all 0.3s;
+        }
+
+        .main .input-wrap .switch-wrap .van-switch__node {
+            width: .6rem;
+            height: .6rem;
+            border: .02rem solid #c5cbcf;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: all 0.3s;
+        }
+
+        .main .save-btn {
+            width: 93%;
+            height: .8rem;
+            background-color: #e42321;
+            font-size: .28rem;
+            color: #fff;
+            text-align: center;
+            line-height: .8rem;
+            margin: 0 auto;
+            border-radius: 4px;
+            margin-top: .2rem;
+        }
+
+        .van-switch--oncolor {
+            background-color: #e42321 !important;
+        }
+
+        .van-switch--on {
+            transform: translateX(95%);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 顶部开始-->
+    <div class="sub-header">
+        <div class="back"></div>
+        <div class="title">修改密码</div>
+    </div>
+    <!-- 顶部结束-->
+
+    <!-- 修改密码--开始 -->
+    <div class="main">
+        <!-- 密码框 -->
+        <div class="input-wrap">
+            <input type="password" placeholder='重新设置密码'>
+            <div class="switch-wrap">
+                <div class="van-switch">
+                    <div class="van-switch__node"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="save-btn">确认修改</div>
+
+    </div>
+    <!-- 修改密码--结束 -->
+
+
+    <script>
+        $(function () {
+            // 点击顶部返回
+            $('.sub-header .back').on('click', function () {
+                window.history.back(-1)
+            })
+            // 点击密码框小眼睛
+            $('.switch-wrap').on('click', function () {
+                $('.van-switch').toggleClass('van-switch--oncolor')
+                $('.van-switch__node').toggleClass('van-switch--on')
+
+                if ($('.input-wrap input').attr('type') == 'password') {
+                    $('.input-wrap input').attr('type', 'text')
+                } else {
+                    $('.input-wrap input').attr('type', 'password')
+                }
+            })
+
+
+
+        })//加载
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button type="button">请求数据1</button>
+		<button type="button">请求数据2</button>
+		<p id="data1"></p>
+		<script>
+			document.getElementsByTagName('button')[0].onclick=function(){
+				ajax('get','data/test1.txt',true,function(res){
+					alert(res);
+				});
+			};
+			document.getElementsByTagName('button')[1].onclick=function(){
+				ajax('get','data/test2.txt',true,function(res){
+					document.getElementById('data1').innerHTML=res;
+				});
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>带关闭按钮的滚动广告</title>
+		<style type="text/css">
+			@font-face {
+				font-family: 'icomoon';
+				src: url('fonts/icomoon.eot?mzyg4v');
+				src: url('fonts/icomoon.eot?mzyg4v#iefix') format('embedded-opentype'),
+					url('fonts/icomoon.ttf?mzyg4v') format('truetype'),
+					url('fonts/icomoon.woff?mzyg4v') format('woff'),
+					url('fonts/icomoon.svg?mzyg4v#icomoon') format('svg');
+				font-weight: normal;
+				font-style: normal;
+				font-display: block;
+			}
+
+			.w {
+				width: 1000px;
+				margin: 0 auto;
+			}
+
+			a {
+				color: #000000;
+				text-decoration: none;
+			}
+
+			.header {
+				height: 400px;
+				background-color: #0000FF;
+			}
+
+			.box {
+				position: absolute;
+				top: 450px;
+				left: 20px;
+				width: 100px;
+				height: 100px;
+				background-color: #636362;
+			}
+
+			.box .clo {
+				position: absolute;
+				top: 0;
+				right: -21px;
+				border: 1px solid #CCCCCC;
+				font-family: 'icomoon';
+				font-size: 20px;
+			}
+
+			.list {
+				height: 400px;
+				margin-top: 10px;
+				background-color: #333333;
+			}
+
+			.nav {
+				height: 400px;
+				margin-top: 10px;
+				background-color: #008000;
+			}
+
+			.floot {
+				height: 400px;
+				margin-top: 10px;
+				background-color: #6495ED;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w header" id="header">header</div>
+		<div class="box">广告位
+			<div class="clo"></div>
+		</div>
+		<div class="w list ">list</div>
+		<div class="w nav">nav</div>
+		<div class="w floot">floot</div>
+
+		<script type="text/javascript">
+			var box = document.querySelector('.box'); //广告位
+			var clo = document.querySelector('.clo'); //广告位叉号
+			var list = document.querySelector('.list'); //页面灰色list
+			var nav = document.querySelector('.nav'); //页面绿色nav
+
+			//点击关闭，关闭广告
+			clo.addEventListener('click', function() {
+				box.style.display = 'none';
+			});
+			clo.addEventListener('mouseover', function() {
+				box.style.cursor = 'pointer';
+			});
+
+			var boxtop = box.offsetTop;
+			var listtop = list.offsetTop;
+
+			//页面滚动事件
+			document.addEventListener('scroll', function() {
+				if (window.pageYOffset > listtop) {
+					box.style.position = 'fixed';
+					box.style.top = boxtop - listtop + 'px';
+				} else {
+					box.style.position = 'absolute';
+					box.style.top = '450px';
+				}
+
+			});
+		</script>
+	</body>
+</html>

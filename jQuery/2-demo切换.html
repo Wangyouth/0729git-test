@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换</title>
+    <style>
+        * {
+            list-style: none;
+        }
+
+        .box {
+            width: 900px;
+            height: 550px;
+            margin: 0 auto;
+            background-color: rgb(201, 195, 195);
+        }
+
+        .box>ul {
+            width: 800px;
+            height: 100px;
+        }
+
+        .box>ul li {
+            float: left;
+        }
+
+        .box>ul li img {
+            float: left;
+            width: 150px;
+            height: 100px;
+            margin: 20px 20px;
+        }
+
+        .box .nav {
+            position: relative;
+            margin: 30px auto;
+            width: 600px;
+            height: 400px;
+        }
+
+        .box .nav img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 400px;
+
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="images/lbt1.png" alt=""></li>
+            <li><img src="images/lbt2.png" alt=""></li>
+            <li><img src="images/lbt3.png" alt=""></li>
+            <li><img src="images/lbt4.png" alt=""></li>
+        </ul>
+        <div class="nav">
+            <img src="images/lbt1.png">
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.box ul li').mousemove(function () {
+                var src = $(this).children('img').attr('src')
+                $('.nav img').attr('src', src)
+            })
+        })
+    </script>
+
+</body>
+
+</html>

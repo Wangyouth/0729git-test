@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>订单</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/my.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/user/my.js"></script>
+    <script src="javascripts/common/public.js"></script>
+    <style>
+        .page {
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .tags-wrap {
+            position: fixed;
+            top: 1rem;
+            left: 0;
+            width: 100%;
+            height: .82rem;
+            border-bottom: 1px solid #dcdcdc;
+            display: flex;
+            text-align: center;
+        }
+
+        .tags-wrap .tags {
+            flex: 1;
+            font-size: .28rem;
+            line-height: .82rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- 顶部--开始-->
+        <div class="sub-header">
+            <div class="back"></div>
+            <div class="title">全部订单</div>
+        </div>
+        <!-- 顶部--结束-->
+
+        <!-- 选项卡--开始-->
+        <div class="tags-wrap">
+            <div class="tags">全部订单</div>
+            <div class="tags">待付款</div>
+            <div class="tags">待收货</div>
+            <div class="tags">待评价</div>
+        </div>
+        <!-- 顶选项卡部--结束-->
+
+    </div>
+
+
+    <script>
+        $(function () {
+
+            // 点击顶部返回
+            $('.sub-header .back').on('click', function () {
+                window.history.back(-1)
+            })
+
+
+
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>

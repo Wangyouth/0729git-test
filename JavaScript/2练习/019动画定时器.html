@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动画定时器</title>
+		<style type="text/css">
+			.a {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background-color: #0000FF;
+			}
+
+			.b {
+				position: absolute;
+				top: 100px;
+				width: 100px;
+				height: 100px;
+				background-color: #990033;
+			}
+		</style>
+	</head>
+	<body>
+		<button type="button" class="btn500">滑动到500px</button>
+		<button type="button" class="btn1000">滑动到1000px</button>
+		<div class="a">一</div>
+		<div class="b">二</div>
+
+		<script type="text/javascript">
+			var a = document.querySelector('.a');
+			var b = document.querySelector('.b');
+			var btn500 = document.querySelector('.btn500');
+			var btn1000 = document.querySelector('.btn1000');
+
+			function animation(obj, traget, callback) {
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function() {
+					var step = (traget - obj.offsetLeft) / 10;
+					step = step > 0 ? Math.ceil(step) : Math.floor(step);
+					if (obj.offsetLeft == traget) {
+						clearInterval(obj.timer);
+						if (callback) {
+							callback();
+						}
+					}
+					obj.style.left = obj.offsetLeft + step + 'px';
+				}, 15);
+			}
+
+			animation(a, 400);
+			btn500.addEventListener('click', function() {
+				animation(b, 500, function() {
+					b.style.backgroundColor = 'red';
+				});
+			});
+			btn1000.addEventListener('click', function() {
+				animation(b, 1000);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 1,创建ajax对象， window.XMLHttpRequest
+		2,链接到服务器 open('get/post',"请求数据","true/false");
+		3,send()
+		4,接收返回值 onreadystatechange
+		status 1xx 2xx 3xx 404 500 200-ok
+		请求状态码 0-4 -->
+		<!-- https://blog.csdn.net/qq_24143443/article/details/103811518 -->
+		<!-- https://blog.csdn.net/weixin_33970449/article/details/86055985 -->
+		<script>
+			if (window.XMLHttpRequest) {
+				var oajax = new XMLHttpRequest();
+			} else {
+				var oajax = new ActiveXObject('Microsoft.XMLHTT');
+			}
+			oajax.open('get', 'data/aaa.txt', true);
+			oajax.send();
+			//当请求被发送到服务器时，我们需要执行一些基于响应的任务。 每当 readyState 改变时，就会触发 onreadystatechange 事件。
+			// 4 － （完成）响应内容解析完成，可以在客户端调用了
+			// 1. 200（成功）：服务器成功处理了请求。通常。这表示服务器成功提供了请求的网页；
+			// responseText返回字符串形式的响应
+
+			// oajax.onreadystatechange=function(){
+			// 	switch(oajax.readyState){
+			// 		case 4:
+			// 		if(oajax.status==200){
+			// 			console.log(oajax.responseText);
+			// 		}
+			// 		break;
+			// 	}
+			// };
+
+			oajax.onreadystatechange = function() {
+				if (oajax.readyState == 4 && oajax.status == 200) {
+					console.log(oajax.responseText);
+				}else{
+					console.log('错误，状态码为：'+oajax.readyState+'status是：'+oajax.status);
+				}
+			};
+		</script>
+
+	</body>
+</html>

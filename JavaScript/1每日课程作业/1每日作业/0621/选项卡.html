@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0
+			}
+
+			#myul {
+				width: 400px;
+				height: 30px
+			}
+
+			#myul li {
+				width: 90px;
+				height: 30px;
+				border: 1px #ccc solid;
+				margin-left: 2px;
+				float: left;
+				list-style: none;
+				text-align: center;
+				line-height: 30px
+			}
+
+			#mydiv {
+				width: 400px;
+				height: 200px;
+				border: 1px #ccc solid;
+				margin-top: 2px
+			}
+
+			p {
+				display: none;
+			}
+
+			.light {
+				background: skyblue
+			}
+		</style>
+	</head>
+	<body>
+		<ul id='myul'>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id='mydiv'>
+			<p>每时每课给你新机会</p>
+			<p>HTML5+CSS3制作酷炫效果</p>
+			<p>JavaScript制作网页特效</p>
+			<p>jQuery制作网页特效</p>
+		</div>
+		<script>
+			/*var lis=document.getElementsByTagName('li');
+		var myp=document.getElementsByTagName('p');
+		var num=0;
+		function myfun()
+		{
+			for(var i=0;i<lis.length;i++)
+			{
+				lis[i].className='';
+				myp[i].style.display='none';
+			}
+			if(lis.length-1<num)
+			{
+				num=0;
+			}
+			lis[num].className='light';
+			myp[num].style.display='block';
+			num++;
+		}
+		setInterval(myfun,1000);*/
+
+
+			//把变量变为属性
+			//把功能写成原型的方法
+			//改变this指向
+
+			//方法一
+			/*function Tab()
+			{
+				this.lis=document.getElementsByTagName('li');
+				this.myp=document.getElementsByTagName('p');
+			}
+			Tab.prototype.changebj=function()
+			{
+				var that=this;
+				for(var j=0;j<this.lis.length;j++)
+				{
+					this.lis[j].index=j;
+					this.lis[j].onmouseover=function()
+					{
+						for(var n=0;n<that.lis.length;n++)
+						{
+							that.lis[n].className='';
+							that.myp[n].style.display='none';
+						}
+						that.lis[this.index].className='light';
+						that.myp[this.index].style.display='block';
+					}
+				}
+			}
+			var p1=new Tab();
+			p1.changebj();*/
+
+			//方法二
+			function Tab() {
+				this.lis = document.getElementsByTagName('li');
+				this.myp = document.getElementsByTagName('p');
+				this.num = 0;
+				this.timer = null;
+				this.myul = document.getElementById('myul');
+			}
+			Tab.prototype.changebj = function() {
+				var that = this;
+				for (var j = 0; j < this.lis.length; j++) {
+					this.lis[j].index = j;
+					this.lis[j].onmouseover = function() {
+						that.bjstyle(this.index);
+						that.num = this.index;
+					};
+				}
+				this.auto();
+				this.myul.onmouseover = function() {
+					clearInterval(that.timer);
+				};
+
+				this.myul.onmouseout = function() {
+					that.auto();
+				};
+			};
+
+			//自动播放
+			Tab.prototype.auto = function() {
+				var that = this;
+				this.timer = setInterval(function() {
+					//  先调用 bjstyle方法  然后在++
+					that.bjstyle(that.num);
+					that.num++;
+					if (that.num > that.lis.length - 1) that.num = 0;
+
+				}, 1000);
+			};
+			Tab.prototype.bjstyle = function(m) {
+				for (var n = 0; n < this.lis.length; n++) {
+					this.lis[n].className = '';
+					this.myp[n].style.display = 'none';
+				}
+				this.lis[m].className = 'light';
+				this.myp[m].style.display = 'block';
+			};
+			var p1 = new Tab();
+			p1.changebj();
+		</script>
+	</body>
+</html>

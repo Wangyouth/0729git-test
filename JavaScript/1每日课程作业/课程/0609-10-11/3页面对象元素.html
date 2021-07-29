@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>页面对象元素</title>
+	<style type="text/css">
+		#wrap {
+			width: 18.75rem;
+			height: 300px;
+			border: 2px solid #FFFF00;
+		}
+
+		#header {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap"></div>
+	<textarea rows="" cols="" id="area"></textarea>
+	<input type="button" name="" id="btn" value="评论" />
+	<script type="text/javascript">
+		var owrap = document.getElementById('wrap');
+		var oarea = document.getElementById('area');
+		var obtn = document.getElementById('btn');
+		obtn.onclick = send;
+		function send() {
+			owrap.innerHTML = oarea.value;
+			oarea.value = '';
+		}
+	</script>
+
+
+	<h3 id="header">点击隐藏或者显示下面的选项</h3>
+	<ul id="list">
+		<li>第一行</li>
+		<li>第二行</li>
+		<li>第三行</li>
+	</ul>
+	<p>最后一行最后一行</p>
+	<script type="text/javascript">
+		var oheader = document.getElementById('header');
+		var olist = document.getElementById('list');
+		oheader.onclick = ontoggle;
+		var off = true;
+
+		function ontoggle() {
+			if (off) {
+				olist.style.display = 'block';
+				off = !off;
+			} else {
+				olist.style.display = 'none';
+				off = !off;
+			}
+		}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>饼图-柱状图</title>
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?mzyg4v');
+            src: url('fonts/icomoon.eot?mzyg4v#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?mzyg4v') format('truetype'),
+                url('fonts/icomoon.woff?mzyg4v') format('woff'),
+                url('fonts/icomoon.svg?mzyg4v#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            margin-left: 10px;
+            margin-top: 10px;
+
+            /* float: left; */
+            width: 600px;
+            height: 400px;
+            border: 1px solid #e3e3e3;
+        }
+
+        .box1 .header {
+            width: 595px;
+            height: 40px;
+            border-bottom: 1px solid #e3e3e3;
+            background-color: #f7f7f7;
+            color: #729fc6;
+            font-size: 20px;
+            font-family: 'icomoon';
+            line-height: 38px;
+            padding-left: 5px;
+        }
+
+        .box1 .box1son {
+            width: 595px;
+            height: 255px;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        .box1 .floot {
+            width: 595px;
+            height: 100px;
+        }
+
+        .floot ul {
+            margin-top: 15px;
+            margin-left: 20px;
+        }
+
+        .floot ul li {
+            list-style: none;
+            float: left;
+            margin: 0 4px;
+        }
+
+        .floot ul li:nth-child(2n) {
+            height: 70px;
+            border: 1px solid #e3e3e3;
+        }
+
+        .floot ul li img {
+            vertical-align: bottom;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floot ul li span {
+            font-size: 30px;
+        }
+
+        #box2 {
+            /* float: left; */
+            margin-left: 10px;
+            margin-top: 50px;
+            margin-bottom: 1000px;
+            width: 900px;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+        #box2 .header {
+            width: 895px;
+            height: 40px;
+            border-bottom: 1px solid #e3e3e3;
+            background-color: #f7f7f7;
+            color: #729fc6;
+            font-size: 20px;
+            font-family: 'icomoon';
+            line-height: 38px;
+            padding-left: 5px;
+        }
+
+        #box2 #box2son {
+            width: 895px;
+            height: 310px;
+        }
+    </style>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/highcharts.js"></script>
+
+</head>
+
+<body>
+    <!-- //饼图盒子 -->
+    <div class="box1">
+        <div class="header">  Traffic Sources</div>
+        <div class="box1son"></div>
+        <div class="floot">
+            <ul>
+                <li><img src="images/facebook.png" alt="">likes <span>1,255</span></li>
+                <li></li>
+                <li><img src="images/tuite.png" alt="">tweets<span>941</span></li>
+                <li></li>
+                <li><img src="images/pins.png" alt="">pins<span>1,050</span></li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- //折线图盒子 -->
+    <div id="box2">
+        <div class="header">  Sale Stats</div>
+        <div id="box2son"></div>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            //饼图
+            var myEcharts = echarts.init(document.querySelector('.box1son'));
+            var optionE = {
+                legend: {
+                    orient: 'left',
+                    right: 40,
+                    top: 70
+                },
+                tooltip: {
+                    borderRadius: 0
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        hoverAnimation: false,
+                        left: -150, top: 10,
+                        data: [
+                            { value: 1048, name: 'social networks' },
+                            { value: 735, name: 'search engines' },
+                            { value: 580, name: 'ad campaigns' },
+                            { value: 484, name: 'direct traffic' },
+                            { value: 300, name: 'other' }
+                        ],
+                        label: {
+                            show: false,
+                        }, itemStyle: {
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    }
+                ]
+            };
+            myEcharts.setOption(optionE);
+
+            //折线图
+            var optionH = {
+                chart: {
+                    type: 'spline',//条形图
+                    // borderWidth: 2, //图标的边框
+                    plotBorderWidth: 1,//xy轴范围的边框
+                    plotBorderColor: "#000000"
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    floating: true,
+                },
+                credits: {
+                    enabled: false//是否保存水印
+                },
+                title: {
+                    text: '',//图表的标题
+                    // Color: '#729fc6'
+                },
+                xAxis: {
+                    lineColor: '#000000',
+                    // tickPositions: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
+                    // tickPixelInterval: 400
+
+                    // categories: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                },
+                yAxis: {
+                    tickAmount: 9,//有几条刻度线
+                    max: 2,
+                    min: -2,
+                    title: {
+                        text: '',
+                    },
+                    labels: {
+                        formatter: function () {
+                            var strVal = this.value + '';
+                            if (strVal.indexOf('.') == -1) {
+                                return strVal + '.000';
+                            }
+                            else {
+                                var arr = strVal.split('.');
+                                if (arr[1].length == 2) {
+                                    return strVal;
+                                } else {
+                                    return strVal + '00';
+                                }
+                            }
+                        }
+                    },
+                    allowDecimals: true,
+                },
+                //设置参数
+                series: [
+                    {
+                        name: 'Domanis',
+                        color: "#E5C358",
+                        data: [0.000, 0.500, 0.800, 1.000, 0.900, 0.600, 0.200, -0.400, -0.700, -1.000, -0.900, -0.600, -0.300, 0.000]
+                    }, {
+                        color: "#B8D6F3",
+                        name: 'Hosting',
+                        data: [1.000, 0.900, 0.500, 0.000, -0.900, -0.800, -1.000, -0.900, -0.700, -0.200, 0.300, 0.600, 0.900, 1.000]
+                    }
+                    , {
+                        color: "#BC5550",
+                        name: 'Serbices',
+                        data: [0.000, 0.300, 0.400, 0.600, 1.000, 1.500, 4.000, 9.900, -9.700, -8.200, -7.300, -3.600, -1.400, -0.900, -0.600, -0.300, - 0.100, 0.100, 0.300, 0.500, 0.800, 1.200, 1.700, 5.000, 10.000, -10.000, -7.000, -4.000, -1.900, -1.300, -0.800, -0.500, -0.300, 0.000]
+                    }]
+            }
+            var chart = Highcharts.chart('box2son', optionH)
+            // var chart = Highcharts.chart('box', options);
+
+        });
+
+
+    </script>
+</body>
+
+</html>

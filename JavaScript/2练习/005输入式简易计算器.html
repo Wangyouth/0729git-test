@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>简易计算器</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 提示信息
+			function text() {
+				var num = prompt('简易计算器\n1.简单加法运算\n2.简单减法运算\n3.简单乘法运算\n4.简单除法运算\n5.退出');
+				return num
+			}	
+				
+			// 提示输入第一个数
+			function n1() {
+				var num = prompt('请输入一个数值：');
+				return num;
+			}
+
+			// 提示输入第二个数
+			function n2() {
+				var num = prompt('请输入一个数值：');
+				return num;
+			}
+
+			// 加法
+			function sum() {
+				var sum = parseInt(n1()) + parseInt(n2());
+				return sum;
+			}
+
+			// 减法
+			function sub() {
+				var sub = parseInt(n1()) - parseInt(n2());
+				return sub;
+			}
+
+			// 乘法
+			function mul() {
+				var mul = parseInt(n1()) * parseInt(n2());
+				return mul;
+			}
+
+			// 除法
+			function divs() {
+				var divs = parseInt(n1()) / parseInt(n2());
+				return divs;
+			}
+
+			do {
+				var num = text();
+				if (num == 1) {
+					alert(sum());
+				} else if (num == 2) {
+					alert(sub());
+				} else if (num == 3) {
+					alert(mul());
+				} else if (num == 4) {
+					alert(divs());
+				} else {}
+			} while (num != 5)
+		</script>
+	</body>
+</html>

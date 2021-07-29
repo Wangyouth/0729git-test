@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>我的收藏</title>
+    <link rel="stylesheet" href="stylesheets/common/common.css">
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/user/my.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/user/my.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+    <style>
+        .main {
+            width: 100%;
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding-left: 2%;
+            padding-right: 2%;
+            flex-wrap: wrap;
+            background-color: #fff;
+        }
+
+        .main .goodslist {
+            width: 48%;
+            height: 5.8rem;
+            background-color: #fff;
+            margin-bottom: .3rem;
+        }
+
+        .main .goodslist .image {
+            width: 3.36rem;
+            height: 3.36rem;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .main .goodslist .image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .main .goodslist .title {
+            width: 100%;
+            height: .8rem;
+            font-size: .28rem;
+            overflow: hidden;
+            margin-top: .2rem;
+        }
+
+        .main .goodslist .price {
+            font-size: .28rem;
+            color: #f93036;
+            margin-top: .2rem;
+        }
+
+        .main .goodslist .btn-warp {
+            width: 100%;
+            height: .56rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main .goodslist .btn-warp .btn {
+            width: 1.08rem;
+            height: .56rem;
+            margin-top: .2rem;
+            color: #f93036;
+            border: 1px solid #f93036;
+            border-radius: .1rem;
+            font-size: .28rem;
+            text-align: center;
+            line-height: .56rem;
+        }
+
+        /* 点击删除时候的遮罩层 */
+        .fav_mask {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .fav_del_wrap {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            width: 6.4rem;
+            height: 2.36rem;
+            border-radius: .5rem;
+            background-color: #fff;
+            z-index: 20;
+        }
+
+        .fav_del_wrap div {
+            height: 1.18rem;
+            line-height: 1.18rem;
+            text-align: center;
+            font-size: .32rem;
+        }
+
+        .fav_del_wrap .fav_del {
+            display: flex;
+        }
+
+        .fav_del_wrap .fav_del span {
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .fav_del_wrap .fav_del .fav_del_on {
+            color: #1989fa;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 顶部开始-->
+    <div class="sub-header">
+        <div class="back"></div>
+        <div class="title">我的收藏</div>
+    </div>
+    <!-- 顶部结束-->
+
+    <!-- 收藏列表--开始 -->
+    <div class="main">
+        <script type="text/html" id="favlist">
+            {{each}} 
+            <div class="goodslist"  gid="{{$value.gid}}">
+                <div class="image"><img src="{{$value.imgsrc}}" alt=""></div>
+                <div class="title">{{$value.title}}</div>
+                <div class="price">￥{{$value.price}}</div>
+                <div class="btn-warp">
+                    <div class="btn fav_buy">购买</div>
+                    <div class="btn fav_del">删除</div>
+                </div>
+            </div>
+            {{/each}}
+        </script>
+
+        <!-- <div class="goodslist">
+            <div class="image"><img src="http://vueshop.glbuys.com/uploadfiles/1524568819.jpg" alt=""></div>
+            <div class="title">好的好红红火火恍恍惚惚或或或或或或或或或或或或或</div>
+            <div class="price">￥28</div>
+            <div class="btn-warp">
+                <div class="btn">购买</div>
+                <div class="btn">删除</div>
+            </div>
+        </div> -->
+
+    </div>
+    <!-- 收藏列表--结束 -->
+
+    <!-- 遮罩层--结束 -->
+    <div class="fav_mask"></div>
+    <div class="fav_del_wrap">
+        <div>确定要删除吗</div>
+        <div class="fav_del">
+            <span class="fav_del_off">取消</span>
+            <span class="fav_del_on">确认</span>
+        </div>
+    </div>
+    <!-- 遮罩层--结束 -->
+
+
+    <script>
+        $(function () {
+            // 获取favlist函数
+            function getFavlist() {
+                let favlist = sessionStorage.getItem("favlist")
+                favlist = JSON.parse(favlist)
+                return favlist
+            }
+
+            //加载数据
+            var favlist = getFavlist()
+            // console.log(favlist);
+            //把数据渲染到页面上
+            var favlisthtml = document.querySelector('.main')
+            favlisthtml.innerHTML = template('favlist', favlist)
+
+
+            // 点击顶部返回
+            $('.sub-header .back').on('click', function () {
+                window.history.back(-1)
+            })
+
+            // 购买
+            $('.main').on('click', '.fav_buy', function () {
+                sessionStorage.setItem('gid', $(this).parent().parent().attr('gid'))
+                window.location.href = 'details.html'
+            })
+
+            // 删除
+            $('.main').on('click', '.fav_del', function () {
+                var $index = $(this).parent().parent().index();
+
+                // 存储的数据列表中删除
+                let favlist = getFavlist()
+                favlist.splice($index, 1)
+                favlist = JSON.stringify(favlist)
+                sessionStorage.setItem('favlist', favlist)
+                // 页面中删除 
+                $('.main .goodslist').eq($index).remove();
+
+                // $('.fav_mask, .fav_del_wrap').css('display', 'block')
+                // // 取消
+                // $('.fav_del_off').on('click', function () {
+                //     $('.fav_mask, .fav_del_wrap').css('display', 'none')
+                // })
+                // // 确定删除
+                // $('.fav_del_on').on('click', function () {
+                //     //遮罩层消失
+                //     $('.fav_mask, .fav_del_wrap').css('display', 'none')
+
+                //     console.log($index);
+                //     // 存储的数据列表中删除
+                //     let favlist = getFavlist()
+                //     favlist.splice($index, 1)
+                //     favlist = JSON.stringify(favlist)
+                //     sessionStorage.setItem('favlist', favlist)
+                //     // 页面中删除 
+                //     $('.main .goodslist').eq($index).remove();
+
+                //     var favlist = getFavlist()
+                //     // console.log(favlist);
+                //     //把数据渲染到页面上
+                //     var favlisthtml = document.querySelector('.main')
+                //     favlisthtml.innerHTML = template('favlist', favlist)
+                // })
+
+            })
+
+        })//加载
+
+    </script>
+
+</body>
+
+</html>

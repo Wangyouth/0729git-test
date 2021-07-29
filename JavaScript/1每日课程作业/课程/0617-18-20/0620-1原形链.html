@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>原形链</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name,chinese,math){
+				this.name=name;
+				this.chinese=chinese;
+				this.math=math;
+				this.show=function(){
+					return name+chinese+math;
+				};
+			}
+			function Student(age){
+				this.age=age;
+				this.show=function(){
+					document.write('姓名：' +this.name+'<br/>年龄：'+this.age+'<br/>语文：'+this.chinese+'<br/>数学：'+this.math);
+					};
+				};
+			
+			function extend(child,parent){
+				var F=function(){
+					F.prototype=parent.prototype;
+					child.prototype=F.prototype;
+				};
+			}
+			extend(Student,Person);
+			var stu=new Student();
+			stu.name='wang';
+			stu.age=18;
+			stu.chinese=99;
+			stu.math=100;
+			stu.show();
+			// console.log('姓名：'+stu.name);
+			// console.log('年龄：'+stu.show());
+			// console.log('语文：'+stu.chinese);
+			// console.log('数学：'+stu.math);
+		</script>
+		
+		
+		<!-- 
+		需求说明
+		创建构函数Person，添加属性姓名(name)、语文成绩（chinese) .数学成绩（math) ;添加三个方法，分别返回姓名、语文和数学成绩
+		创建构函数Student，继承Person的属性和方法，并添加属于自己的属性年龄(age），添加属于自己的方法，返回年龄
+		创建Student的对象，并在页面上输出实例的姓名、语文、数学成绩和年龄 
+		-->
+
+	</body>
+</html>

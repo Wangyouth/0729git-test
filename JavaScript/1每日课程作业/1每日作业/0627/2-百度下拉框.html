@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>防止冒泡，百度下拉框</title>
+		<style type="text/css">
+			.box{
+				display: none;
+				width: 400px;
+				height: 210px;
+				background-color: #999999;
+			}
+			ul {
+				float: left;
+			}
+			ul li{
+				list-style: none;
+				line-height: 30px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.addEventListener('load',function(){
+				var btn=document.querySelector('button');
+				var box=document.querySelector('.box');
+				btn.addEventListener('click',function(){
+					box.style.display='block';
+				} );
+				
+				document.addEventListener('click',function(){
+					box.style.display='none';
+				} ,true);
+				
+			} );
+		</script>
+	</head>
+	<body>
+		<button type="button">源语言：自动检测</button>
+		<div class="box">
+			<ul>
+				<li>中文</li>
+				<li>韩语</li>
+				<li>西班牙语</li>
+				<li>俄语</li>
+				<li>粤语</li>
+				<li>希腊语</li>
+			</ul>
+			<ul>
+				<li>中文</li>
+				<li>韩语</li>
+				<li>西班牙语</li>
+				<li>俄语</li>
+				<li>粤语</li>
+				<li>希腊语</li>
+			</ul>
+			<ul>
+				<li>中文</li>
+				<li>韩语</li>
+				<li>西班牙语</li>
+				<li>俄语</li>
+				<li>粤语</li>
+				<li>希腊语</li>
+			</ul>
+		</div>
+	</body>
+</html>

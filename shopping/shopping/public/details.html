@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="images/favicon.ico">
+    <title>商品详情</title>
+    <style></style>
+    <link rel="stylesheet" href="stylesheets/public.css">
+    <link rel="stylesheet" href="stylesheets/common/swiper-bundle.min.css">
+    <link rel="stylesheet" href="stylesheets/home/details.css">
+    <script src="javascripts/common/flexible.js"></script>
+    <script src="javascripts/common/swiper-bundle.min.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/common/jquery.min.js"></script>
+    <script src="javascripts/home/details.js"></script>
+    <script src="javascripts/common/public.js"></script>
+
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="details-header">
+        <div class="back"></div>
+        <div class="tab-wrap">
+            <div class="tab-name active">商品</div>
+            <div class="tab-name">详情</div>
+            <div class="tab-name">评价</div>
+        </div>
+        <div class="cart-icon" id="cart-icon">
+            <div class="spot"></div>
+        </div>
+    </div>
+    <!-- 内容部分 -->
+    <!-- 商品--开始 -->
+    <div class="page-111">
+        <!-- 轮播图 -->
+        <div class="swiper-container swpier-wrap">
+            <div class="swiper-wrapper">
+                <!-- <div class="swiper-slide"><img src="images/home/index/banner_1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="images/home/index/banner_2.jpg" alt=""></div> -->
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- 轮播图结束 -->
+
+        <div class="goods-ele-main">
+            <div class="goods-title">你好啊啊 啊</div>
+            <div class="price">4646</div>
+            <ul class="sales-wrap">
+                <li>快递费用：￥ <span></span></li>
+                <li>月销量</li>
+            </ul>
+        </div>
+
+        <div class="reviews-main">
+            <div class="reviews-title">商品评价</div>
+            <div>
+                <div class="reviews-wrap">
+                    <!-- <div class="reviews-list">
+                        <div class="uinfo">
+                            <div class="head"><img src="" alt=""></div>
+                            <div class="nickname">张保安</div>
+                        </div>
+                        <div class="reviews-content">奥德赛</div>
+                        <div class="reviews-date">2020-07-02-3-2-3</div>
+                    </div> -->
+                    <script type="text/html" id="reviewswrap111">
+                        {{each data}}
+                        <div class="reviews-list">
+                            <div class="uinfo">
+                                <div class="head"><img src="{{$value.head}}" alt=""div></div>
+                                <div class="nickname">{{$value.nickname}}</div>
+                            </div>
+                            <div class="reviews-content">{{$value.content}}</div>
+                            <div class="reviews-date">{{$value.times}}</div>
+                        </div>
+                        {{/each}}
+                    </script>
+
+                </div>
+                <div class="reviews-more">查看更多评论</div>
+            </div>
+            <div class="no-data">暂时没哟评价</div>
+        </div>
+
+        <div class="bottom-btn-wrap">
+            <div class="btn fav">收藏</div>
+            <div class="btn cart">加入购物车</div>
+        </div>
+
+        <!-- //阴影遮罩层 -->
+        <div class="mask"></div>
+
+        <!-- 选择尺码数量的盒子 -->
+        <div class="cart-panel cart-panel-down">
+            <div class="goods-info">
+                <div class="close-panel-wrap">
+                    <div class="spot"></div>
+                    <div class="line"></div>
+                    <div class="close"></div>
+                </div>
+                <div class="goods-img">
+                    <img src="" alt="">
+                </div>
+                <div class="goods-wrap">
+                    <div class="goods-title">高跟鞋上来开发及</div>
+                    <div class="price">￥12.90</div>
+                    <div class="goods-code">商品编码：000000000</div>
+                </div>
+            </div>
+
+
+            <div class="attr-wrap">
+                <div class="attr-list">
+                    <div class="attr-name">颜色</div>
+                    <div class="val-wrap color">
+                        <!-- <div class="val">灰色</div>
+                        <div class="val">白色</div>
+                        <div class="val">黑色</div> -->
+                    </div>
+                </div>
+                <div class="attr-list">
+                    <div class="attr-name">尺码</div>
+                    <div class="val-wrap size">
+                        <!-- <div class="val">25</div>
+                        <div class="val">36</div>
+                        <div class="val">43</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="amount-wrap">
+                <div class="amount-name">购买数量</div>
+                <div class="amount-input-wrap">
+                    <div class="btn del">-</div>
+                    <div class="amount-input">
+                        <input type="text" value="1">
+                    </div>
+                    <div class="btn inc">+</div>
+                </div>
+            </div>
+
+
+            <div class="sure-btn">确定</div>
+        </div>
+        <!-- 选择尺码数量的盒子---结束 -->
+
+    </div>
+    <!-- 商品---结束 -->
+    <div class="van-prompt">请选择颜色</div>
+
+
+    <!-- 详情---开始 -->
+    <div class="page-222">
+        <!-- <script type="text/html" id="content"> -->
+        <div class="content">
+            <!-- {{each}}
+                    {{$value.bodys}}
+                     {{each $value.images}}
+                     <img src="{{$value}}" alt=""><br>
+                     {{/each}}
+                {{/each}} -->
+        </div>
+        <!-- </script> -->
+    </div>
+    <!-- 详情---结束 -->
+
+
+    <!-- 评价---开始 -->
+    <div class="page-333">
+        <div class="reviews-main">
+            <div class="reviews-title">商品评价</div>
+            <div class="reviews-wrap">
+                <!-- <div class="reviews-list">
+                    <div class="uinfo">
+                        <div class="head"><img src="" alt=""></div>
+                        <div class="nickname">张保安</div>
+                    </div>
+                    <div class="reviews-content">奥德赛</div>
+                    <div class="reviews-date">2020-07-02-3-2-3</div>
+                </div> -->
+                <script type="text/html" id="reviewswrap333">
+                    {{each data}}
+                    <div class="reviews-list">
+                        <div class="uinfo">
+                            <div class="head"><img src="{{$value.head}}" alt=""></div>
+                            <div class="nickname">{{$value.nickname}}</div>
+                        </div>
+                        <div class="reviews-content">{{$value.content}}</div>
+                        <div class="reviews-date">{{$value.times}}</div>
+                    </div>
+                    {{/each}}
+                </script>
+
+
+
+            </div>
+            <div class="no-data">暂无评价</div>
+        </div>
+    </div>
+    <!-- 评价---结束 -->
+
+
+    <!-- 内容结束 -->
+</body>
+
+</html>

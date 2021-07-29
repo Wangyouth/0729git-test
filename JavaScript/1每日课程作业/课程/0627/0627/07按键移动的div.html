@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;height: 100px;background-color: lightblue;position: absolute;left: 0;top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var obox=document.getElementById('box');
+			document.onkeydown=function(ev){
+				var ev=ev||event;
+				// 上:38 右边:39 下:40 左:37
+				var getKeyCode=ev.keyCode;
+				switch(getKeyCode){
+					case 39:
+					obox.style.left=obox.offsetLeft+10+"px";
+					break;
+					case 37:
+					obox.style.left=obox.offsetLeft-10+"px";
+					break;
+					case 38:
+					obox.style.top=obox.offsetTop-10+"px";
+					break;
+					case 40:
+					obox.style.top=obox.offsetTop+10+"px";
+					break;
+				}
+			}
+		</script>
+	</body>
+</html>

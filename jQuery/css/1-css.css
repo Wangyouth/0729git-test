@@ -1,0 +1,25 @@
+* {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 300px;
+  border: 1px solid #000;
+  margin: 10px 10px ;
+}
+.box ul {
+  width: 100%;
+}
+.box ul li .title {
+  width: 100%;
+  height: 30px;
+  background-color: #8b8787;
+  border-bottom: 1px solid #000000;
+  line-height: 30px;
+}
+.box ul li .nav {
+  display: none;
+  width: 100%;
+  height: 100px;
+}

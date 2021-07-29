@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				width: 300px;
+				border: 1px solid black;
+			}
+
+			.text {
+				width: 300px;
+				height: 170px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<p class="text">
+				自美国挑起贸易战以来,中美之间贸易摩擦和争端不断升级,国内外舆论对白宫的谴责一直不断,但也有一些似是而非的观点在网上流布。一种是把责任归咎于中国,说是
+				自美国挑起贸易战以来，中美之间贸易摩擦和争端不断升级，国内外舆论对白宫的谴责一直不断，但也有一些似是而非的观点在网上流布.一种是把责任归咎于中国，说是“中国在战略上‘过分自信和高调’,招致了美国的组合拳”;一种是批评中国不该反击，“中国在战略上‘过分自信和高调’，招致了美国的组合拳”；一种是批评中国不该反击，说是“及早妥协让步,贸易战就不会愈演愈烈”。言下之意,只要中国服软,美国就会“高抬贵手”,中美“贸易战”也就不会打了。事实果真如此吗?贸易战这件事,即便从中美说是“及早妥协让步，贸易战就不会愈演愈烈”。言下之意，只要中国服软，美国就会“高抬贵手”，中美“贸易战”也就不会打了.事实果真如此吗？贸易战这件事，即便从中美关系的逻辑考量,也是需要有一些“历史视野”的。
+			</p><a href="javascript:;" class="more">更多...</a>
+
+		</div>
+		<script type="text/javascript">
+			var amore = document.querySelector('.more');
+			var p = document.querySelector('p');
+			var bol =true;
+			amore.onclick= function(){
+				if(bol){
+					p.className='';
+					amore.innerHTML='收起...';
+					
+				}else {
+					p.className='text';
+					amore.innerHTML='更多...';
+				}
+				bol =!bol;
+			};
+		</script>
+	</body>
+</html>

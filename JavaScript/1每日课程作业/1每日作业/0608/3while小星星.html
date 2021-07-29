@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>while小星星</title>
+	</head>
+	<body>
+		<!-- 
+		*
+		**
+		***
+		****
+		
+		   *
+		  **
+		 ***
+		****
+		
+		****
+		***
+		**
+		*
+		
+		****
+		 ***
+		  **
+		   *
+		 
+		 
+		 -->
+		<script type="text/javascript">
+			var i = 1;
+			while (i <= 4) {
+				var j = 1;
+				while (j <= i) {
+					document.write('*');
+					j++;
+				}
+				document.write('<br />');
+				i++;
+			}
+			document.write('<br />');
+			
+			
+			var i = 1;
+			while (i <= 4) {
+				var k=4-i;
+				var j=1;
+				while (j <= k) {
+					document.write('&nbsp;');
+					k--;
+				}
+				while (j <= i) {
+					document.write('*');
+					j++;
+				}
+				document.write('<br />');
+				i++;
+			}
+			document.write('<br />');
+			
+			
+			
+			var i = 1;
+			while (i <= 4) {
+				var j = 4;
+				while (j >= i) {
+					document.write('*');
+					j--;
+				}
+				document.write('<br />');
+				i++;
+			}
+			document.write('<br />');
+			
+			var i = 4;
+			while (i >= 1) {
+				var k=4-i;
+				var j=1;
+				while (j <= k) {
+					document.write('&nbsp;');
+					k--;
+				}
+				while (j <= i) {
+					document.write('*');
+					j++;
+				}
+				document.write('<br />');
+				i--;
+			}
+			document.write('<br />');
+
+			
+
+		
+		</script>
+	</body>
+</html>

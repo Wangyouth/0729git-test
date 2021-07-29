@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			li{margin-bottom: 10px;height: 50px;line-height: 50px;background-color: red;}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+		<script>
+			var olist=document.getElementById('list');
+			olist.onclick=function(ev){
+				// ev.target获取事件目标
+				var ev=ev||event;
+				alert(ev.target.innerHTML)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 	<script>
+			var x = 1;
+			var y = 0;
+			var z = 0;
+
+			function add(n) {
+				n = n + 1;
+			}
+			y = add(x);
+
+			function add(n) {
+				​
+				n = n + 3;
+			}​
+			z = add(x);​
+			alert(y + z);
+		</script> -->
+
+
+
+		<!-- <script>
+			var module = (function() {
+				var my = {};
+				privatevar = 8;
+
+				function f() {
+					return ++privatevar;
+				}
+				my.publicvar = 1;
+				my.publicfun = function() {
+					return f();
+				};
+				return my;
+			}());
+			alert(module.publicvar);
+			alert(module.publicfun());
+		</script> -->
+
+
+
+		<script>
+			var n = prompt('请输入');
+
+			function fb(x) {
+				if (x == 0 || x == 1) {
+					return 1;
+				}
+				return fb(x - 1) + fb(x - 2);
+			}
+			// for(i=0;i<20;i++){
+			// 	document.write(fb(i)+',');
+			// }
+			document.write(fb(n)+',');
+		</script>
+
+		<!-- <script>
+			function hi(){
+				var a; 
+				alert(a);
+			}
+			hi();
+		</script> -->
+
+		<!-- <script>
+			function a() {
+				this.b = function() {
+					console.log('b');
+				};
+			}
+			window.a();
+		</script> -->
+
+	</body>
+</html>

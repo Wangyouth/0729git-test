@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>用户名密码验证</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		ul {
+			width: 800px;
+			height: 300px;
+			margin: 10px 0 0 10px;
+			padding: 30px;
+			border: 1px solid black;
+			/* text-align: center; */
+		}
+
+		ul li {
+			list-style: none;
+			height: 40px;
+
+		}
+
+		ul li div {
+			display: inline-block;
+			width: 100px;
+			text-align: right;
+		}
+
+		ul li input {
+			outline: none;
+			height: 30px;
+		}
+
+		ul li span {
+			display: inline-block;
+			width: 300px;
+			text-align: left;
+			padding-left: 10px;
+		}
+
+		ul li button {
+			border: none;
+			padding: 10px;
+			margin-left: 100px;
+			color: #fff;
+			background-color: orangered;
+		}
+
+		ul li i {
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 15px;
+			width: 26px;
+			height: 27px;
+		}
+
+		.active {
+			background: url(images/014.jpg) no-repeat;
+			background-position: 0 0;
+		}
+
+		.err {
+			background: url(images/014.jpg) no-repeat;
+			background-position: 0 -58px;
+		}
+
+		.ok {
+			background: url(images/014.jpg) no-repeat;
+			background-position: 0 -31px;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li>
+			<div>会员名：</div><input type="text" class="uname" /><i class="ni"></i><span class="uname_span"></span>
+		</li>
+		<li>
+			<div>登录密码：</div><input type="text" class="pwd" /><i class="pi"></i><span class="pwd_span"></span>
+		</li>
+		<li>
+			<div>确认密码：</div><input type="text" class="pwdtoo" /><i class="pit"></i><span class="pwdtoo_span"></span>
+		</li>
+		<li><button type="button">同意协议并注册</button></li>
+	</ul>
+	<script type="text/javascript">
+		var uname = document.querySelector('.uname');
+		var pwd = document.querySelector('.pwd');
+		var pwdtoo = document.querySelector('.pwdtoo');
+		var unamespan = document.querySelector('.uname_span');
+		var pwdspan = document.querySelector('.pwd_span');
+		var pwdtoospan = document.querySelector('.pwdtoo_span');
+		var ni = document.querySelector('.ni');
+		var pi = document.querySelector('.pi');
+		var pit = document.querySelector('.pit');
+
+		//用户名验证
+		uname.onfocus = function () {
+			unamespan.innerHTML = '6-12个字符，推荐使用中文会员名';
+			ni.className = 'ni active';
+		};
+		uname.onblur = function () {
+			var pat = new RegExp('[^a-zA-Z0-9\_\u4e00-\u9fa5]', 'i');
+			if (uname.value == '') {
+				unamespan.innerHTML = '不能为空';
+				ni.className = 'ni err';
+			} else if (uname.length < 6 || uname.length > 12 || pat.test(uname.value) == true) {
+				unamespan.innerHTML = '长度不在范围内或者存在非法字符';
+				ni.className = 'ni err';
+			} else {
+				unamespan.innerHTML = '正确';
+				ni.className = 'ni ok';
+			}
+		};
+
+
+		//第一次密码验证
+		pwd.onfocus = function () {
+			pwdspan.innerHTML = '6-12个字符';
+			pi.className = 'pi active';
+		};
+		pwd.onblur = function () {
+
+			var reg1 = /^\d{6,}$/;// 验证不能全是数字 ，验证至少n位数字：^\d{n,}$
+			var reg2 = /^[A-Za-z]+$/;	//验证由26个英文字母组成的字符串：^[A-Za-z]+$
+			var reg3 = /^\w+$/;	// 验证由数字、26个英文字母或者下划线组成的字符串：^\w+$ 
+			console.log(pwd.value.length);
+			if (pwd.value == '') {
+				pwdspan.innerHTML = '不能为空';
+				pi.className = 'pi err';
+			}
+			else if (reg1.test(pwd.value) == true) {
+				pwdspan.innerHTML = '不能全是数字';
+				pi.className = 'pi err';
+			}
+			else if (reg2.test(pwd.value) == true) {
+				pwdspan.innerHTML = '不能全是字母';
+				pi.className = 'pi err';
+			}
+			else if (!reg3.test(pwd.value) == true) {
+				pwdspan.innerHTML = '非字母数字下划线';
+				pi.className = 'pi err';
+			} else if (pwd.value.length < 6 || pwd.value.length > 12) {
+				pwdspan.innerHTML = '长度不在范围内或者存在非法字符';
+				pi.className = 'pi err';
+			}
+			//这里在加一个判断全是数字的正则表达式
+			else {
+				pwdspan.innerHTML = '正确';
+				pi.className = 'pi ok';
+			}
+		};
+
+
+		//第二次密码验证
+		pwdtoo.onfocus = function () {
+			pwdtoospan.innerHTML = '6-12个字符';
+			pit.className = 'pit active';
+		};
+		pwdtoo.onblur = function () {
+			if (pwdtoo.value == '') {
+				pwdtoospan.innerHTML = '不能为空';
+				pit.className = 'pit err';
+			} else if (pwdtoo.value.length < 6 || pwdtoo.value.length > 12) {
+				pwdtoospan.innerHTML = '长度不在范围内或者存在非法字符';
+				pit.className = 'pit err';
+			} else if (pwd.value !== pwdtoo.value) {
+				pwdtoospan.innerHTML = '两次密码不相同';
+				pit.className = 'pit err';
+			}
+			//这里在加一个判断全是数字的正则表达式
+			else {
+				pwdtoospan.innerHTML = '正确';
+				pit.className = 'pit ok';
+			}
+		};
+	</script>
+</body>
+
+</html>

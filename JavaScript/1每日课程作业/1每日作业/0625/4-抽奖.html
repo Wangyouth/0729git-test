@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>简单抽奖</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.box {
+				width: 480px;
+				height: 480px;
+				border: 1px solid transparent;
+				/* margin: 30px auto; */
+			}
+
+			ul li {
+				float: left;
+				width: 150px;
+				height: 150px;
+				background-color: #0099CC;
+				margin: 5px;
+				color: white;
+				font-size: 24px;
+				font-weight: 700;
+				text-align: center;
+				line-height: 150px;
+			}
+
+			.btn {
+				padding: 8px;
+			}
+		</style>
+
+		<script type="text/javascript">
+			window.addEventListener('load', function() {
+				var one = document.querySelector('.one');
+				var two = document.querySelector('.two');
+				var three = document.querySelector('.three');
+				var four = document.querySelector('.four');
+				var five = document.querySelector('.five');
+				var six = document.querySelector('.six');
+				var seven = document.querySelector('.seven');
+				var eight = document.querySelector('.eight');
+
+				var star = document.querySelector('.star');
+				var end = document.querySelector('.end');
+
+				var arr = [one, two, three, four, five, six, seven, eight];
+				// console.log(arr[0]);
+				star.onclick = function() {
+					if (flag == true) {
+						lottery();
+						k=0;
+					}
+					flag=false;
+				};
+
+				end.onclick = function() {
+					clearInterval(timer);
+					flag=true;
+				};
+
+
+				var timer;
+				var k = 0;
+				var flag = true;
+
+				function lottery() {
+					timer = setInterval(function() {
+						if (k == 8) {
+							k = 0;
+						}
+						for (var i = 0; i < arr.length; i++) {
+							arr[i].style.backgroundColor = '#0099CC';
+						}
+						arr[k].style.backgroundColor = '#333333';
+						k++;
+					}, 10);
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li class='one'>800元优惠券</li>
+				<li class='two'>800元优惠券</li>
+				<li class='three'>800元优惠券</li>
+				<li class='eight'>800元优惠券</li>
+				<li>
+					<button type="button" class="btn star">开始</button>
+					<button type="button" class="btn end">停止</button>
+				</li>
+				<li class='four'>800元优惠券</li>
+				<li class='seven'>800元优惠券</li>
+				<li class='six'>800元优惠券</li>
+				<li class='five'>800元优惠券</li>
+			</ul>
+		</div>
+	</body>
+</html>

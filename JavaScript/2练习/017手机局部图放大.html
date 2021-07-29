@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>手机局部图放大</title>
+		<style type="text/css">
+			.boximg {
+				position: relative;
+				width: 400px;
+				height: 400px;
+				border: 1px solid #000000;
+				margin: 10px 0 0 10px;
+			}
+
+			.boximg img {
+				width: 400px;
+			}
+
+			.small {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 200px;
+				border: 1px solid #969696;
+				background-color: #FF7300;
+				opacity: 0.4;
+				cursor: move;
+			}
+
+			.big {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 410px;
+				width: 600px;
+				height: 600px;
+				border: 1px solid #000000;
+				overflow: hidden;
+			}
+
+			.big img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 900px;
+				height: 900px;
+			}
+		</style>
+	</head>
+	<body>
+		//boximg存放图片的盒子
+		<div class="boximg">
+			<img src="images/huaweiphone.jpg">//boximg里面的图片
+			<div class="small"></div>//small局部小盒子
+			<div class="big"><img src="images/huaweiphone.jpg" class="bigimg"></div>
+			//big存放大图的盒子，bigimg大盒子里面的图片
+		</div>
+
+		<script>
+			var boximg = document.querySelector('.boximg');
+			var small = document.querySelector('.small');
+			var big = document.querySelector('.big');
+
+			//鼠标移动到图片上显示选择区域和大图
+			boximg.addEventListener('mouseover', function() {
+				small.style.display = 'block';
+				big.style.display = 'block';
+			});
+			//鼠标移出后，选择区域和大图消失
+			boximg.addEventListener('mouseout', function() {
+				small.style.display = 'none';
+				big.style.display = 'none';
+			});
+
+
+			//小盒子跟随鼠标移动
+			boximg.addEventListener('mousemove', function(e) {
+				var x = e.pageX - boximg.offsetLeft;
+				var y = e.pageY - boximg.offsetTop;
+
+				var smallX = x - small.offsetWidth / 2;
+				var smallY = y - small.offsetHeight / 2;
+				if (smallX <= 0) {
+					smallX = 0;
+				} else if (smallX >= boximg.offsetWidth - small.offsetWidth) {
+					smallX = boximg.offsetWidth - small.offsetWidth;
+				}
+				small.style.left = smallX + 'px';
+				if (smallY <= 0) {
+					smallY = 0;
+				} else if (smallY >= boximg.offsetHeight - small.offsetHeight) {
+					smallY = boximg.offsetHeight - small.offsetHeight;
+				}
+				small.style.top = smallY + 'px';
+				
+				//大图片跟随小盒子的移动而移动
+				//按照比例来算
+				//因为
+				//小框移动的距离/小框最大的移动距离=大图移动的距离/大图的最大移动距离
+				//所以
+				//大图移动的距离=小框移动的距离*大图的最大移动距离/小框最大的移动距离
+				var bigimg = document.querySelector('.bigimg');
+				var bigimgX = smallX * (bigimg.offsetWidth - big.offsetWidth) / (boximg.offsetWidth - small.offsetWidth);
+				var bigimgY = smallY * (bigimg.offsetWidth - big.offsetWidth) / (boximg.offsetWidth - small.offsetWidth);
+				bigimg.style.left = -bigimgX + 'px';
+				bigimg.style.top = -bigimgY + 'px';
+			});
+
+			
+		</script>
+	</body>
+</html>

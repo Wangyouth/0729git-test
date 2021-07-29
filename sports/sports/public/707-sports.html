@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax上拉下拉</title>
+    <script src="javascripts/template-web.js"></script>
+    <script src="javascripts/axios.js"></script>
+    <script src="javascripts/better-scroll.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+        }
+
+        #sports-header {
+            width: 100%;
+            height: 50px;
+            background: #537bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        #sports-main {
+            margin-top: 50px;
+            height: calc(100vh - 50px);
+        }
+
+        #sports-main ul {
+            background: white;
+        }
+
+        #sports-main ul li {
+            display: flex;
+            border-bottom: 1px #f7f7f7 solid;
+            margin: 0 18px;
+            padding: 20px 0;
+        }
+
+        #sports-main .sports-list- text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type {
+            font-size: 14px;
+            color: #828c9b;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #sports-main .sports-list-text p:last-of-type span {
+            margin-right: 10px;
+        }
+
+        #sports-main .sports-list- img {
+            width: 130px;
+            margin-left: 20px;
+        }
+
+        #sports-main .sports-list-img img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #loadingDown {
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            z-index: -1;
+            text-align: center;
+        }
+
+        #loadingUp {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #loading {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 30px;
+            line-height:
+                30px;
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="sports-header">
+        腾讯 | 体育
+    </header>
+    <!-- 下拉刷新的区域 -->
+    <div id="loadingDown"></div>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!-- <li>
+                    <div class="sports-list-text">
+                        <p>
+                            詹姆斯一分半钟拿下6分1盖帽，这就是联盟第一人的水准
+                        </p>
+                        <p>
+                            <span>50评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="images/a.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="sports-list-text">
+                        <p>
+                            魔兽18年为何会被⻩蜂纵走，管理层有心其影响年轻球员
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="images/b.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="sports-list-text">
+                        <p>
+                            乔治未来惹争议，巴拉巴拉巴拉，詹姆斯热火没夺冠1
+                        </p>
+                        <p>
+                            <span>12评</span>
+                        </p>
+                    </div>
+                    <div class="sports-list-img">
+                        <img src="images/c.jpg" alt="">
+                    </div>
+                </li> -->
+            </ul>
+            <!-- 上拉的区域 -->
+            <div id="loadingUp"></div>
+        </div>
+        <div id="loading"></div>
+    </main>
+
+    <!-- 模板引擎 -->
+    <script type="text/html" id="s-list">
+        {{each list}}
+        <li>
+            <div class="sports-list-text">
+                <p>
+                    {{$value.title}}
+                </p>
+                <p>
+                    <span>{{$value.comment}}</span>
+                </p>
+            </div>
+            <div class="sports-list-img">
+                <img src="{{$value.img}}" alt="">
+            </div>
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- 使用axios请求数据，实现上拉，下拉刷新 -->
+    <script>
+        var sportsList = document.querySelector('.sports-list');//列表数据
+        var sportsMain = document.querySelector('#sports-main');//数据滚动盒子
+        var loadingDown = document.querySelector('#loadingDown');
+        var loadingUp = document.querySelector('#loadingUp');
+        var loading = document.querySelector('#loading');
+
+        var now = 0;
+        initlist()
+        function initlist() {
+            loading.innerHTML = 'loading...'
+            axios.post('/list707', {
+                page: 0,
+                count: 10
+            }).then(function (res) {
+                if (res.data.errcode == 0) {
+                    setTimeout(() => {
+                        loading.innerHTML = ''
+                        console.log(res.data)
+                        sportsList.innerHTML = template('s-list', res.data)
+                        initBetterScroll()
+                    }, 1000)
+                }
+            })
+        }
+
+        function initBetterScroll() {
+            //配置上拉下拉
+            let bs = BetterScroll.createBScroll(sportsMain, {
+                pullDownRefresh: {
+                    threshold: 30
+                },
+                pullUpLoad: {
+                    threshold: -10
+                }
+            })
+
+            //下拉上拉开始滚动
+            bs.on('scrollStart', () => {
+                loadingDown.innerHTML = '下拉刷新';
+                loadingUp.innerHTML = '上拉加载'
+            })
+
+            //下拉事件
+            bs.on('pullingDown', () => {
+                loadingDown.innerHTML = 'loading...';
+                axios.post('/list', {
+                    page: 0,
+                    count: 10
+                }).then(function (res) {
+                    if (res.data.errcode == 0) {
+                        setTimeout(() => {
+                            sportsList.innerHTML = template('s-list', res.data);
+                            loadingDown.innerHTML = '加载成功';
+                            console.log(res.data.list.length);
+                            bs.finishPullDown();
+                            bs.refresh();
+                            now = 0;
+                        }, 1000)
+                    }
+                })
+            })
+
+            //上拉事件
+            bs.on('pullingUp', () => {
+                loadingUp.innerHTML = 'loading...';
+                axios.post('/list', {
+                    page: ++now,
+                    count: 10
+                }).then(function (res) {
+                    if (res.data.errcode == 0) {
+                        setTimeout(() => {
+                            loading.innerHTML = ''
+                            sportsList.innerHTML += template('s-list', res.data)
+                            console.log(res.data.list.length);
+                            if (res.data.list.length) {
+                                loadingUp.innerHTML = '加载成功';
+                            } else {
+                                loadingUp.innerHTML = '没有数据了';
+                            }
+                            bs.finishPullUp();
+                            bs.refresh();
+                        }, 1000)
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
